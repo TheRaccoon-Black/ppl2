@@ -9,7 +9,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                <p><?php echo anchor('login/logout', '<button class="btn btn-danger">Log Out</button>'); ?></p>
+                <a href="<?= base_url('index.php/admin/logout') ?>"> <button class="btn btn-danger">Log Out</button></a>
 
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
@@ -93,46 +93,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/rencana')?>" class="nav-link active">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
-                                <p>
-                                    Perencanaan Anggaran
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/lapor')?>" class="nav-link active">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p>
-                                    Pelaporan Keuangan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/tujuan')?>" class="nav-link active">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Tujuan Keuangan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/investasi')?>" class="nav-link active">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Investasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/tools')?>" class="nav-link active">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Tools keuangan
-                                </p>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

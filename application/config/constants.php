@@ -82,4 +82,4 @@ defined('EXIT_UNKNOWN_METHOD') OR define('EXIT_UNKNOWN_METHOD', 6); // unknown c
 defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user input
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
-defined('URLL')      OR define('URLL', 'http://localhost/ppl2/index.php/'); // highest automatically-assigned error code
+defined('URLL')      OR define('URLL', 'http://localhost/ppl2/login'); // highest automatically-assigned error code
