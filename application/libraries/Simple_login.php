@@ -35,14 +35,16 @@ class Simple_login {
 
       if($query->num_rows() == 1) {
           //ambil data user berdasar username
-          $row  = $this->CI->db->query('SELECT id_user FROM users where username = "'.$username.'"');
+          $row  = $this->CI->db->query('SELECT id_user,nama FROM users where username = "'.$username.'"');
           $admin     = $row->row();
           $id   = $admin->id_user;
+          $nama = $admin->nama;
 
           //set session user
           $this->CI->session->set_userdata('username', $username);
           $this->CI->session->set_userdata('id_login', uniqid(rand()));
           $this->CI->session->set_userdata('id', $id);
+          $this->CI->session->set_userdata('nama', $nama);
 
           //redirect ke halaman dashboard
           redirect(site_url('user'));

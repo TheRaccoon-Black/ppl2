@@ -1,10 +1,13 @@
 <section class="content">
     <div class="container-fluid">
+        <div class="d-flex flex-row-reverse mb-5">
+            <a href="http://localhost/ppl2/index.php/kategori" class="btn btn-primary">Tambah Data</a>
+        </div>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">tanggalnya</h3>
                 <div class="card-tools">
-                   
+
                 </div>
             </div>
 
@@ -33,7 +36,7 @@
                             <td>bensin</td>
                             <td>Rp30.000</td>
                         </tr>
-                        <tr>    
+                        <tr>
                             <td>pendidikan</td>
                             <td>baju sekoalah</td>
                             <td>Rp300.000</td>
@@ -48,7 +51,7 @@
             </div>
             <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap ">
-                <thead>
+                    <thead>
                         <tr>
                             <th>Akun</th>
                             <th>Status</th>
@@ -71,14 +74,14 @@
                             <td>bensin</td>
                             <td>Rp30.000</td>
                         </tr>
-                        <tr>    
+                        <tr>
                             <td>pendidikan</td>
                             <td>baju sekoalah</td>
                             <td>Rp300.000</td>
                         </tr>
-                    </tbody>    
+                    </tbody>
                 </table>
-            </div>  
+            </div>
 
         </div>
 

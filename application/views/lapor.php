@@ -7,25 +7,40 @@
         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <div class="dt-buttons btn-group flex-wrap"> <button
-                            class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example1"
-                            type="button"><span>Copy</span></button> <button
-                            class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="example1"
-                            type="button"><span>CSV</span></button> <button
-                            class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example1"
-                            type="button"><span>Excel</span></button> <button
-                            class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="example1"
-                            type="button"><span>PDF</span></button> <button class="btn btn-secondary buttons-print"
-                            tabindex="0" aria-controls="example1" type="button"><span>Print</span></button>
-                        <div class="btn-group"><button
-                                class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis" tabindex="0"
-                                aria-controls="example1" type="button" aria-haspopup="true"><span>Column
-                                    visibility</span><span class="dt-down-arrow"></span></button></div>
+                    <div class="dt-buttons btn-group flex-wrap">
+                        <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0"
+                            aria-controls="example1" type="button">
+                            <span>Copy</span>
+                        </button>
+                        <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0"
+                            aria-controls="example1" type="button">
+                            <span>CSV</span>
+                        </button>
+                        <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0"
+                            aria-controls="example1" type="button">
+                            <span>Excel</span>
+                        </button>
+                        <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
+                            aria-controls="example1" type="button">
+                            <span>PDF</span>
+                        </button>
+                        <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="example1"
+                            type="button">
+                            <span>Print</span>
+                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis"
+                                tabindex="0" aria-controls="example1" type="button" aria-haspopup="true">
+                                <span>Column visibility</span>
+                                <span class="dt-down-arrow"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
-                    <div id="example1_filter" class="dataTables_filter"><label>Cari:<input type="search"
-                                class="form-control form-control-sm" placeholder="" aria-controls="example1"></label>
+                    <div id="example1_filter" class="dataTables_filter">
+                        <label>Search:<input type="search" class="form-control form-control-sm" placeholder=""
+                                aria-controls="example1"></label>
                     </div>
                 </div>
             </div>
@@ -42,17 +57,17 @@
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="Browser: activate to sort column ascending">Tanggal</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Platform(s): activate to sort column ascending">Akun Debet</th>
+                                    aria-label="Platform(s): activate to sort column ascending">kategori</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="Engine version: activate to sort column ascending">Keterangan Debet</th>
+                                    aria-label="Engine version: activate to sort column ascending">Keterangan</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending">Akun kredit</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending">Keterangan kredit</th>
+                                    aria-label="CSS grade: activate to sort column ascending">jenis</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                     aria-label="CSS grade: activate to sort column ascending">Jumlah</th>
+                                <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                    aria-label="CSS grade: activate to sort column ascending">Jumlah</th>
                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                    aria-label="CSS grade: activate to sort column ascending">Aksi</th>
+                                    aria-label="CSS grade: activate to sort column ascending">Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -73,16 +88,16 @@
                                     <td>Akun Kredit
                                         <?php echo $i; ?>
                                     </td>
-                                    <td>Keterangan Kredit
+                                    <!-- <td>Keterangan Kredit
                                         <?php echo $i; ?>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <?php echo $i * 100; ?>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <a href="#" class="btn btn-warning">Edit</a>
                                         <a href="#" class="btn btn-danger">Hapus</a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             <?php endfor; ?>
                         </tbody>
@@ -90,12 +105,12 @@
                             <tr>
                                 <th rowspan="1" colspan="1">No</th>
                                 <th rowspan="1" colspan="1">Tanggal</th>
-                                <th rowspan="1" colspan="1">Akun Debet</th>
-                                <th rowspan="1" colspan="1">Keterangan Debet</th>
-                                <th rowspan="1" colspan="1">Akun Kredit</th>
-                                <th rowspan="1" colspan="1">Keterangan Kredit</th>
+                                <th rowspan="1" colspan="1">kategori</th>
+                                <th rowspan="1" colspan="1">Keterangan</th>
+                                <th rowspan="1" colspan="1">Jenis</th>
                                 <th rowspan="1" colspan="1">Jumlah</th>
-                                <th rowspan="1" colspan="1">Aksi</th>
+                                <!-- <th rowspan="1" colspan="1">Jumlah</th>
+                                <th rowspan="1" colspan="1">Aksi</th> -->
                             </tr>
                         </tfoot>
 

@@ -2,7 +2,7 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light " style="z-index:99;width:100%; position:fixed">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -20,7 +20,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="z-index:99; position:fixed">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <!-- <img src="<?= base_url('assets/templates/')?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
@@ -151,7 +151,7 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">-</a></li>
+                                <!-- <li class="breadcrumb-item"><a href="#">-</a></li> -->
                                 <!-- <li class="breadcrumb-item active"><?= $title?></li> -->
                             </ol>
                         </div><!-- /.col -->
@@ -161,5 +161,5 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <div class="content">
+            <div class="content" style="margin-top:40px;">
                 <div class="container-fluid">
