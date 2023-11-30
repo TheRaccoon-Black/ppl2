@@ -1,24 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * @property M_laporan $M_laporan
+ * @property M_transaksi $M_transaksi
  */
 class Laporan extends CI_Controller {
 
     public function index() {
-        $this->load->model('M_kategori');
+        $this->load->model('M_transaksi');
         $id = $this->session->userdata('id');
-        $user = $this->M_kategori->get_data_user($id);
-        $keluar = $this->M_kategori->get_data_pengeluaran($id);
-        $masuk = $this->M_kategori->get_data_pemasukkan($id);
+        $transaksi = $this->M_transaksi->get_transaksi_all($id);
         $data = [
-            "kategori"=>$user,
-            "keluar"=>$keluar,
-            "masuk"=>$masuk
+            "transaksi"=>$transaksi,
         ];
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('v_kategori', $data);
+        $this->load->view('lapor', $data);
         $this->load->view('templates/footer');
     }
     

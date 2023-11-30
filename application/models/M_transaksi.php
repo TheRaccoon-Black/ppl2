@@ -12,16 +12,16 @@
          public function insert($data){
             $this->db->insert($this->table, $data);
          }
-        
          function get_transaksi_all($id = 0){
-            $this->db->select("*");
+               $this->db->select("*");
             $this->db->from($this->table);
-            $this->db->join('kategori_transaksi','transaksi_keuangan.id_user=kategori_transaksi.id_user');
-            if($id != 0){
-                $this->db->where("id_user",$id);
+            $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
+            if ($id != 0){
+                $this->db->where("transaksi_keuangan.id_user", $id);
             }
             return $this->db->get()->result_array();
         }
+        
         public function get_data_pengeluaran($id = 0){
             $this->db->select("*");
             $this->db->from("kategori_transaksi");

@@ -71,36 +71,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php for ($i = 1; $i <= 10; $i++): ?>
+                            <?php foreach ($transaksi as $i => $trx): ?>
                                 <tr class="<?php echo $i % 2 === 0 ? 'even' : 'odd'; ?>">
                                     <td class="dtr-control sorting_1" tabindex="0">
-                                        <?php echo $i; ?>
+                                        <?php echo $i + 1; ?>
                                     </td>
-                                    <td>2023-10-
-                                        <?php echo $i + 20; ?>
-                                    </td>
-                                    <td>Akun Debet
-                                        <?php echo $i; ?>
-                                    </td>
-                                    <td>Keterangan Debet
-                                        <?php echo $i; ?>
-                                    </td>
-                                    <td>Akun Kredit
-                                        <?php echo $i; ?>
-                                    </td>
-                                    <!-- <td>Keterangan Kredit
-                                        <?php echo $i; ?>
-                                    </td> -->
                                     <td>
-                                        <?php echo $i * 100; ?>
+                                        <?= $trx['tanggal'] ?>
                                     </td>
-                                    <!-- <td>
-                                        <a href="#" class="btn btn-warning">Edit</a>
-                                        <a href="#" class="btn btn-danger">Hapus</a>
-                                    </td> -->
+                                    <td>
+                                        <?= $trx['namaKategori'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $trx['keterangan'] ?>
+                                    </td> <!-- Use 'keterangan' directly -->
+                                    <td>
+                                        <?= $trx['Deskripsi'] ?>
+                                    </td> <!-- Use 'Deskripsi' directly -->
+                                    <td>
+                                        <?= $trx['jumlah'] ?>
+                                    </td> <!-- Use 'jumlah' directly -->
+                                    <!-- 
+            <td>
+                <a href="#" class="btn btn-warning">Edit</a>
+                <a href="#" class="btn btn-danger">Hapus</a>
+            </td>
+            -->
                                 </tr>
-                            <?php endfor; ?>
+                            <?php endforeach ?>
                         </tbody>
+
                         <tfoot>
                             <tr>
                                 <th rowspan="1" colspan="1">No</th>
