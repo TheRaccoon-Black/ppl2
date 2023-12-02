@@ -1,6 +1,11 @@
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title"><strong>Laporan keuangan</strong></h3>
+    <div class="card-header d-flex ">
+        <div class="">
+            <h3 class="card-title"><strong>Laporan keuangan</strong></h3>
+        </div>
+        <div class="ml-auto">
+            <a href="<?=base_url('index.php/menu/laporan/tambah')?>" class="btn btn-primary">Tambah transaksi</a>
+        </div>
     </div>
 
     <div class="card-body">

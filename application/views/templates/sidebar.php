@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open active">
-                            <a href="<?= base_url('index.php/menu/laporan')?>" class="nav-link active">
+                            <a href="<?= base_url('index.php/user/lacak')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                 <p>
                                     Pelacakan pengeluaran
@@ -102,7 +102,7 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/lapor')?>" class="nav-link active">
+                            <a href="<?= base_url('index.php/menu/laporan')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-chart-line"></i>
                                 <p>
                                     Pelaporan Keuangan
