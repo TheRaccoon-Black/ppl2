@@ -42,12 +42,21 @@
         
             return $this->db->get()->result_array();
         }
-        function delete($id){
-            $this->db->where("id_kategori",$id);
-            $this->db->delete("kategori_transaksi");
-            if($this->db->affected_rows()>0){
-                return true;
-            }else{
+        public function delete($id) {
+            try {
+                $this->db->where("id_kategori", $id);
+                $this->db->delete("kategori_transaksi");
+    
+                if ($this->db->affected_rows() > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception $e) {
+                // Log or handle the exception
+                log_message('error', 'Error deleting category: ' . $e->getMessage());
+    
+                // Return false and handle the error in the controller
                 return false;
             }
         }

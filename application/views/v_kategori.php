@@ -2,6 +2,11 @@
 // $nama = $this->session->userdata('username'); 
 $nama = $this->session->userdata('nama');
 ?>
+<?php if (isset($error_message)): ?>
+    <div class="alert alert-danger">
+        <?= $error_message ?>
+    </div>
+<?php endif ?>
 <p>Selamat datang, id
     <?= $user_id ?> dan user
     <?= $nama ?>!

@@ -38,11 +38,20 @@ class Kategori extends CI_Controller {
     }
     public function delete($id){
         $this->load->model("M_kategori");
-        $result = $this->M_kategori->delete($id);
-        if($result){
-            redirect("kategori/index");
-        }else{
-            echo "gagal menghapus data";
+    
+        try {
+            $result = $this->M_kategori->delete($id);
+    
+            if($result) {
+                redirect("kategori/index");
+            } else {
+                $data['error_message'] = "Failed to delete the category.";
+                $this->load->view('kategori/index', $data);
+            }
+        } catch (Exception $e) {
+            $data['error_message'] = "Error: Cannot delete a category that is in use.";
+            $this->load->view('kategori/index', $data);
         }
     }
+    
 }

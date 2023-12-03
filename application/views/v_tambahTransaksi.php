@@ -3,22 +3,24 @@
 <div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">Quick Example</h3>
+        <div class="d-flex flex-row-reverse">
+            <a href="http://localhost/ppl2/index.php/kategori" class="btn btn-secondary">Tambah Kategori</a>
+        </div>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
     <?php echo form_open_multipart(); ?>
     <form method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id_user" value="<? php ?>">
+        <input type="hidden" name="id_user" value="<?= $user_id ?>">
         <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama Transaksi</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="nama_user"
-                    placeholder="Masukkan User" value="<? php ?>">
+                <input type="text" class="form-control" id="exampleInputEmail1" name="nama_transaksi" placeholder="Nama Transaksi">
             </div>
             <div class="form-group">
                 <label for="kategori">kategori</label>
                 <select class="form-control" name="kategori">
-                    <?php foreach ($kategori as $kat): ?>
+                    <?php foreach ($kategori as $kat) : ?>
                         <option value="<?= $kat['id_kategori']; ?>">
                             <?= $kat["namaKategori"]; ?>
                         </option>
@@ -26,37 +28,21 @@
                 </select>
             </div>
             <div class="form-group">
-                  <label>Tanggal</label>
-                    <div class="input-group" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control">
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
+                <label>Tanggal</label>
+                <div class="input-group" id="reservationdate" data-target-input="nearest">
+                    <input type="text" class="form-control" name="tanggal" placeholder="DD-MM-YYYY">
+                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                 </div>
-                <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+            </div>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
-            <!-- Pastikan jQuery dan datetimepicker sudah dimuat --> 
-<script>
-    $(document).ready(function () {
-        // Datepicker initialization
-        $('#reservationdate').datepicker({
-            format: 'DD/MM/YYYY',  // Set your desired display format
-        });
-
-        // Optional: If you want to capture the selected date and convert it to another format
-        $('#reservationdate').on('change.datepicker', function (e) {
-            let selectedDate = e.date.format('YYYY-MM-DD');
-            // You can use 'selectedDate' to send to the server or update other elements.
-            console.log(selectedDate);
-        });
-    });
-</script>
+            <!-- Pastikan jQuery dan datetimepicker sudah dimuat -->
 
             <div class="form-group">
                 <label for="exampleInputPassword1">Jumlah(Rp)</label>
-                <input type="text" class="form-control" name="jumlah" id="exampleInputPassword1"
-                    placeholder="Password" oninput="formatNumber(this)" value="<?php ?>">
+                <input type="text" class="form-control" name="jumlah" id="exampleInputPassword1" placeholder="Jumlah" oninput="formatNumber(this)">
             </div>
             <script>
                 function formatNumber(input) {
@@ -68,35 +54,38 @@
 
                     // Update nilai input
                     input.value = value;
+
+                    // Hapus titik sebelum mengirim ke database
+                    let rawValue = value.replace(/\./g, '');
+
+                    // Kembalikan nilai tanpa titik
+                    return rawValue;
                 }
 
-                
-            </script>
-            <!-- <script>
-    // Fungsi untuk mengonversi format tanggal
-    function convertDateFormat(inputDate) {
-        // Split tanggal menjadi array [dd, mm, yyyy]
-        var parts = inputDate.split('/');
-        
-        // Gabungkan kembali dengan format yyyy/mm/dd
-        return parts[2] + '/' + parts[1] + '/' + parts[0];
-    }
+                // Menangkap event submit form
+                document.querySelector('form').addEventListener('submit', function() {
+                    // Cari elemen input jumlah
+                    let inputJumlah = document.querySelector('[name="jumlah"]');
 
-    // Menangani perubahan nilai pada input tanggal
-    document.getElementById('reservationdate').addEventListener('input', function () {
-        var inputValue = this.value;
-        
-        // Jika nilai input tidak kosong
-        if (inputValue.trim() !== '') {
-            // Konversi format tanggal
-            var convertedDate = convertDateFormat(inputValue);
-            
-            // Set nilai input kembali dengan format baru
-            this.value = convertedDate;
-        }
-    });
-</script> -->
-            
+                    // Ambil nilai raw (tanpa titik) dari input jumlah
+                    let rawValue = inputJumlah.value.replace(/\./g, '');
+
+                    // Setel nilai tanpa titik ke input
+                    inputJumlah.value = rawValue;
+                     // Konversi format tanggal sebelum mengirim ke server
+    let inputTanggal = document.querySelector('[name="tanggal"]');
+    let tanggalValue = inputTanggal.value;
+
+    // Split tanggal menjadi array [dd, mm, yyyy]
+    let dateParts = tanggalValue.split('-');
+
+    // Buat format baru: yyyy-mm-dd
+    let formattedTanggal = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
+
+    // Setel nilai tanggal yang telah diformat ke input
+    inputTanggal.value = formattedTanggal;
+                });
+            </script>
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary" value="simpan">Submit</button>

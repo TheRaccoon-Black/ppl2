@@ -46,7 +46,7 @@ class Laporan extends CI_Controller
     public function tambah()
     {
         $this->load->model("M_transaksi");
-        $post = $this->input->post(null, true);
+        $post = $this->input->post();
 
         if (empty($post)) {
             $id_user = $this->session->userdata('id');
@@ -62,8 +62,16 @@ class Laporan extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $id_user = $this->input->post("id_user");
+            $id_kat = $this->input->post("kategori");
+            $nama = $this->input->post("nama_transaksi");
+            $tanggal = $this->input->post("tanggal");
+            $jumlah = $this->input->post("jumlah");
             $data = array(
                 "id_user" => $id_user,
+                "id_kategori"=> $id_kat,
+                "keterangan"=> $nama,
+                "tanggal"=>$tanggal,
+                "jumlah"=>$jumlah
             );
             $this->M_transaksi->insert($data, 'transaksi_keuangan');
             redirect("menu/laporan");
