@@ -10,6 +10,8 @@
                     <tr>
                         <th style="width: 10px">#</th>
                         <th>Tujuan(Goal)</th>
+                        <th>Terkumpul sekarang</th>
+                        <th>Total yang dibutuhkan</th>
                         <th>Progress</th>
                         <th style="width: 40px">Label</th>
                     </tr>
@@ -18,6 +20,8 @@
                     <tr>
                         <td>1.</td>
                         <td>Tiket Mudik</td>
+                        <td>Rp200.000</td>
+                        <td>Rp2.000.000</td>
                         <td>
                             <div class="progress progress-xs">
                                 <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
@@ -28,6 +32,8 @@
                     <tr>
                         <td>2.</td>
                         <td>Dana beli baju</td>
+                        <td>Rp200.000</td>
+                        <td>Rp2.000.000</td>
                         <td>
                             <div class="progress progress-xs">
                                 <div class="progress-bar bg-warning" style="width: 70%"></div>
@@ -38,6 +44,8 @@
                     <tr>
                         <td>3.</td>
                         <td>Sepatu Baru</td>
+                        <td>Rp200.000</td>
+                        <td>Rp2.000.000</td>
                         <td>
                             <div class="progress progress-xs progress-striped active">
                                 <div class="progress-bar bg-primary" style="width: 30%"></div>
@@ -48,6 +56,8 @@
                     <tr>
                         <td>4.</td>
                         <td>Modal Ngedate</td>
+                        <td>Rp200.000</td>
+                        <td>Rp2.000.000</td>    
                         <td>
                             <div class="progress progress-xs progress-striped active">
                                 <div class="progress-bar bg-success" style="width: 90%"></div>

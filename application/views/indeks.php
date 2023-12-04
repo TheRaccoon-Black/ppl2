@@ -1,14 +1,19 @@
 <!-- Content Wrapper. Contains page content -->
-
+<section>
 <!-- Content Header (Page header) -->
 <h1 class="mb-5 ml-3"><strong>Selamat Datang <?php echo ucfirst($this->session->userdata('username')); ?> di Uang.KU!</strong></h1>
 
-<div class="container-fluid center">
+<div class="container-fluid center" style="margin-bottom: 100px;">
     <div class="row" style="height: 200px;">
         <div class="col-lg-6 col-12">
             <div class="small-box bg-info" style="height: 200px;">
                 <div class="inner" style="height: 175px;">
-                    <p>Saldo</p><?= var_dump($pemasukkan_kategori); ?>
+                    <p>Saldo</p>
+                    <!-- tes -->
+                    
+
+                    <!-- tes -->
+                    <!-- <?= var_dump($pemasukkan_kategori); ?> -->
                     <h3>Rp<?= number_format($total_m, 0, ',', '.') ?></h3>
                 </div>
                 <div class="icon">
@@ -31,9 +36,9 @@
                 </a>
             </div>
             <div class="col-lg-12 col-12">
-            <div class="card card-danger">
+            <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Pie Chart</h3>
+                    <h3 class="card-title">Pemasukkan</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
@@ -42,7 +47,7 @@
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-                </div>
+                </div> 
                 <div class="card-body">
     <canvas id="pieChart" class="mx-auto" style="min-height: 250px; max-height: 250px; max-width: 100%; width: 80%;"></canvas>
 </div>
@@ -100,3 +105,4 @@ new Chart(pieChartCanvas, {
 <!-- /.footer -->
 
 <!-- ./wrapper -->
+</section>

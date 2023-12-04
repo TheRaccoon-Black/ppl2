@@ -3,15 +3,12 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<footer class="main-footer fixed-bottom bg-light py-2 text-center">
-    <div class="container">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0
-        </div>
-        <strong class="text-dark">Copyright &copy; 2023 <a href="#" class="text-primary">ppl</a>.</strong> All rights reserved.
+<footer class="main-footer container" style="">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.2.0
     </div>
-</footer>
-
+    <strong>Copyright &copy; 2023<a href="#">ppl</a>.</strong> All rights reserved.
+  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -41,7 +38,7 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/templates')?>/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?= base_url('assets/templates')?>/dist/js/demo.js"></script> 
+<!-- <script src="<?= base_url('assets/templates')?>/dist/js/demo.js"></script>  -->
 <!-- Page specific script -->
 <script>
   $(function () {

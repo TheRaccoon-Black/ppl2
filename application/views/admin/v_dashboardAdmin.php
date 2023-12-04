@@ -1,7 +1,7 @@
 <div class="card">
     <p>Selamat datang, <?= $this->session->userdata('nama') ?>!</p>
 
-    <a href="http://beritacoding.test/index.php/coba/c/" style="width: 200px;margin-left:10px" class="btn btn-block btn-success">tambah +</a>
+    <!-- <a href="http://beritacoding.test/index.php/coba/c/" style="width: 200px;margin-left:10px" class="btn btn-block btn-success">tambah +</a> -->
     <!-- <?=json_encode($users)?> -->
     <!-- /.card-header -->
     <div class="card-body">
