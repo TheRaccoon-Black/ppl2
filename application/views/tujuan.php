@@ -1,8 +1,14 @@
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Tujuan keuangan</h3>
-        </div>
+    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <h3 class="card-title">Tujuan keuangan</h3>
+    </div>
+    <div class="ml-auto">
+        <a href="<?= base_url('index.php/menu/tujuan/tambah') ?>" class="btn btn-primary">Tambah transaksi</a>
+    </div>
+</div>
+
 
         <div class="card-body">
             <table class="table table-bordered">
@@ -17,22 +23,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($tujuan as $goal):?>
                     <tr>
-                        <td>1.</td>
-                        <td>Tiket Mudik</td>
-                        <td>Rp200.000</td>
-                        <td>Rp2.000.000</td>
+                        <td>no</td>
+                        <td><?= $goal['tujuan_keuangan']?></td>
+                        <td>Rp<?= number_format($goal['uang_sekarang'],0,',','.')?></td>
+                        <td>Rp<?= number_format($goal['jumlah_dibutuhkan'],0,',','.')?></td>
                         <td>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
+                        <div class="progress progress-xs">
+    <div class="progress-bar progress-bar-danger" style="width: <?= $goal['uang_sekarang'] / $goal['jumlah_dibutuhkan'] * 100 ?>%   "></div>
+</div>
+
                         </td>
-                        <td><span class="badge bg-danger">55%</span></td>
+                        <td><span class="badge bg-primary"><?= number_format($goal['uang_sekarang'] / $goal['jumlah_dibutuhkan'] * 100, 2) ?>
+%</span></td>
                     </tr>
+                    <?php endforeach;?>
                     <tr>
                         <td>2.</td>
                         <td>Dana beli baju</td>
-                        <td>Rp200.000</td>
+                        <td>Rp1.400.000</td>
                         <td>Rp2.000.000</td>
                         <td>
                             <div class="progress progress-xs">
@@ -44,7 +54,7 @@
                     <tr>
                         <td>3.</td>
                         <td>Sepatu Baru</td>
-                        <td>Rp200.000</td>
+                        <td>Rp600.000</td>
                         <td>Rp2.000.000</td>
                         <td>
                             <div class="progress progress-xs progress-striped active">
@@ -56,7 +66,7 @@
                     <tr>
                         <td>4.</td>
                         <td>Modal Ngedate</td>
-                        <td>Rp200.000</td>
+                        <td>Rp1.800.000</td>
                         <td>Rp2.000.000</td>    
                         <td>
                             <div class="progress progress-xs progress-striped active">

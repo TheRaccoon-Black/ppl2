@@ -110,10 +110,10 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/tujuan')?>" class="nav-link active">
+                            <a href="<?= base_url('index.php/menu/tujuan')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Tujuan Keuangan
+                                    Tujuan Keuangan 
                                 </p>
                             </a>
                         </li>
@@ -162,4 +162,4 @@
 
             <!-- Main content -->
             <div class="content" style="margin-top:40px;">
-                <div class="container-fluid">
+                <div class="container-fluid vh-100">

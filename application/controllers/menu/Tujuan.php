@@ -3,20 +3,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * @property M_transaksi $M_transaksi
  */
-class Laporan extends CI_Controller
+class Tujuan extends CI_Controller
 {
     
     public function index()
     {
-        $this->load->model('M_transaksi');
+        $this->load->model('M_tujuan');
         $id = $this->session->userdata('id');
-        $transaksi = $this->M_transaksi->get_transaksi_all($id);
+        $tujuan = $this->M_tujuan->get_tujuan($id);
         $data = [
-            "transaksi" => $transaksi,
+            "tujuan" => $tujuan,
         ];
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('lapor', $data);
+        $this->load->view('tujuan', $data);
         $this->load->view('templates/footer');
     }
  
