@@ -117,14 +117,14 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item menu-open">
+                        <!-- <li class="nav-item menu-open">
                             <a href="<?= base_url('index.php/user/investasi')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Investasi
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item menu-open">
                             <a href="<?= base_url('index.php/user/tools')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-book"></i>
