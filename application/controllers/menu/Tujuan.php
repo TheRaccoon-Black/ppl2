@@ -58,6 +58,7 @@ class Tujuan extends CI_Controller
     public function tambah()
     {
         $this->load->model('M_tujuan');
+        $this->load->model('M_kategori');
         $post = $this->input->post();
 
         if (empty($post)) {
@@ -82,10 +83,29 @@ class Tujuan extends CI_Controller
                 'tanggal_buat' => $sekarang,
                 'tanggal_target' => $target,
             ];
+            $kategori = [
+                'id_user' => $id_user,
+                'namaKategori'=> $goal,
+                'Deskripsi' => 'pengeluaran',
+            ];
 
+            $this->M_kategori->insert($kategori,'kategori_transaksi');
             $this->M_tujuan->insert($data, 'rencana_keuangan');
             redirect('menu/tujuan');
 
+        }
+    }
+    public function update($id){
+        $this->load->model('M_tujuan');
+        $post = $this->input->post();
+        $result=$this->M_tujuan->update(
+            $id,
+            $post['uang_sekarang']
+        );
+        if($result){
+            redirect("menu/tujuan");
+        }else{
+            echo "data gagal dihapus";
         }
     }
 

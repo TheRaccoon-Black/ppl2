@@ -45,8 +45,10 @@
                             <td>
                                 <?= $goal['tujuan_keuangan'] ?>
                             </td>
-                            <td>Rp
-                                <?= number_format($goal['uang_sekarang'], 0, ',', '.') ?>
+                            <td><button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                    data-target="#updateModal<?= $goal['id_rencana'] ?>">Rp
+                                    <?= number_format($goal['uang_sekarang'], 0, ',', '.') ?>
+                                </button>
                             </td>
                             <td>Rp
                                 <?= number_format($goal['jumlah_dibutuhkan'], 0, ',', '.') ?>
@@ -121,11 +123,29 @@
                                             </div>
                                             <!-- footer modal -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Button
-                                                    Untuk Menutup Modal</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">tutup</button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div id="updateModal<?= $goal['id_rencana'] ?>" class="modal fade" role="dialog">
+                                    <!-- ... (modal code remains unchanged) ... -->
+                                    <div class="modal-dialog">
+                                        <!-- body modal -->
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                            <form id="formUpdate<?= $goal['id_rencana'] ?>"
+      action="<?= base_url('index.php/menu/tujuan/update/' . $goal['id_rencana']) ?>"
+      method="post">
+    <label for="uang_sekarang">Terkumpul Sekarang</label>
+    <input type="number" class="form-control" id="uang_sekarang<?= $goal['id_rencana'] ?>"
+           name="uang_sekarang" value="<?= $goal['uang_sekarang'] ?>" required min="<?= $goal['uang_sekarang'] ?>">
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ... (modal code remains unchanged) ... -->
                                 </div>
 
                             </td>
@@ -173,3 +193,18 @@
         }
     });
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var formUpdate = document.getElementById("formUpdate<?= $goal['id_rencana'] ?>");
+        formUpdate.addEventListener("submit", function (event) {
+            var uangSekarang = parseFloat(document.getElementById("uang_sekarang<?= $goal['id_rencana'] ?>").value);
+
+            // Validasi: Uang sekarang hanya dapat ditambah
+            if (uangSekarang < <?= $goal['uang_sekarang'] ?>) {
+                alert("Error: Uang sekarang hanya dapat ditambah!");
+                event.preventDefault(); // Mencegah pengiriman formulir jika validasi gagal
+            }
+        });
+    });
+</script> 

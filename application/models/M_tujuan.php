@@ -14,6 +14,18 @@ class M_tujuan extends CI_Model
     {
         $this->db->insert($this->table, $data);
     }
+    function update($id,$uang){
+        $data = array(
+            "uang_sekarang"=>$uang
+        );
+        $this->db->where("id_rencana",$id);
+        $this->db->update("rencana_keuangan",$data);
+        if($this->db->affected_rows()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function get_tujuan($id = 0)
     {
         $this->db->select("*");
