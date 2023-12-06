@@ -1,3 +1,5 @@
+<?php $user_id = $this->session->userdata('id') ?>
+<?= $this->session->userdata("username") ?>
 <div class="container-fluid">
     <div class="card">
         <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
@@ -90,16 +92,17 @@
 
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                    data-target="#myModal">Detail</button>
-                                <div id="myModal" class="modal fade" role="dialog">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+        data-target="#myModal<?= $goal['id_rencana'] ?>">Detail</button>
+
+<div id="myModal<?= $goal['id_rencana'] ?>" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <!-- konten modal-->
                                         <div class="modal-content">
                                             <!-- heading modal -->
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Detail pembagian gaji</h4>
+                                                <h4 class="modal-title">log proses</h4>
                                             </div>
                                             <!-- body modal -->
                                             <div class="modal-body">
@@ -108,22 +111,24 @@
                                                         <h3 class="card-title">progress </h3>
                                                     </div>
                                                     <div class="card-body" style="max-height: 280px; overflow-y: auto;">
-                                                        <?php for ($i = 1; $i <= 10; $i++): ?>
+                                                    <?php $details = $this->M_tujuan->get_detail($goal['id_rencana']); ?>
+                                                    <?php foreach ($details as $data): ?>
                                                             <div class="card card-primary card-outline">
                                                                 <div class="card-header">
                                                                     <h5 class="card-title">
-                                                                        <?= "Proses ke " . $i ?>
+                                                                        <?= $data['tanggal'] ?> | Rp<?= number_format($data['jumlah'], 0, ',', '.')?>
                                                                     </h5>
                                                                 </div>
                                                             </div>
-                                                        <?php endfor; ?>
+                                                        <?php endforeach; ?>
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- footer modal -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">tutup</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">tutup</button>
                                             </div>
                                         </div>
                                     </div>
@@ -134,14 +139,21 @@
                                         <!-- body modal -->
                                         <div class="modal-content">
                                             <div class="modal-body">
-                                            <form id="formUpdate<?= $goal['id_rencana'] ?>"
-      action="<?= base_url('index.php/menu/tujuan/update/' . $goal['id_rencana']) ?>"
-      method="post">
-    <label for="uang_sekarang">Terkumpul Sekarang</label>
-    <input type="number" class="form-control" id="uang_sekarang<?= $goal['id_rencana'] ?>"
-           name="uang_sekarang" value="<?= $goal['uang_sekarang'] ?>" required min="<?= $goal['uang_sekarang'] ?>">
-    <button type="submit" class="btn btn-primary">Update</button>
-</form>
+                                                <form id="formUpdate<?= $goal['id_rencana'] ?>"
+                                                    action="<?= base_url('index.php/menu/tujuan/update/' . $goal['id_rencana']) ?>"
+                                                    method="post">
+                                                    <input type="hidden" name="ket" value="<?=$goal['tujuan_keuangan']?>">
+                                                    <input type="hidden" name="id_user" value="<?=$id_user?>">
+                                                    <?php $waktu = date('Y/m/d');?>
+                                                    <label for="uang_sekarang">Terkumpul Sekarang</label>
+                                                    <input type="number" class="form-control"
+                                                        id="uang_sekarang<?= $goal['id_rencana'] ?>" name="uang_sekarang"
+                                                        value="<?= $goal['uang_sekarang'] ?>" required
+                                                        min="<?= $goal['uang_sekarang'] ?>">
+                                                    <input type="hidden" name="waktu" value="<?=$waktu?>">
+                                                    <input type="hidden" name="selisih" value="<?=$goal['uang_sekarang']?>">
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -207,4 +219,4 @@
             }
         });
     });
-</script> 
+</script>

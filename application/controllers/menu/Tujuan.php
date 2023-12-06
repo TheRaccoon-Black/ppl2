@@ -59,13 +59,20 @@ class Tujuan extends CI_Controller
     {
         $this->load->model('M_tujuan');
         $this->load->model('M_kategori');
+        $this->load->model('M_kategori');
         $post = $this->input->post();
 
         if (empty($post)) {
             $id_user = $this->session->userdata('id');
+            //untuk id kategori
+            $kategori = $this->M_transaksi->get_kategori($id_user);
+            // var_dump($kategori);
+            $relasi = array(
+                "kategori" => $kategori
+            );
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
-            $this->load->view("v_tambahtujuan");
+            $this->load->view("v_tambahtujuan",$relasi);
             $this->load->view('templates/footer');
         } else {
             $id_user = $this->input->post('id_user');
@@ -93,20 +100,37 @@ class Tujuan extends CI_Controller
             $this->M_tujuan->insert($data, 'rencana_keuangan');
             redirect('menu/tujuan');
 
-        }
+        }   
     }
     public function update($id){
         $this->load->model('M_tujuan');
+        $this->load->model('M_transaksi');
         $post = $this->input->post();
-        $result=$this->M_tujuan->update(
+        $sekarang = $this->input->post('waktu');
+        $uang = $this->input->post('uang_sekarang');
+        $ket = $this->input->post('ket');
+        $id_user = $this->input->post('id_user');
+        $uang_selisih = $this->input->post('selisih');
+        $selisih = $uang - $uang_selisih;
+        $this->M_tujuan->update(
             $id,
-            $post['uang_sekarang']
+            $uang
         );
-        if($result){
-            redirect("menu/tujuan");
-        }else{
-            echo "data gagal dihapus";
-        }
+        $data = [
+            'id_rencana' => $id,
+            'jumlah' => $selisih,
+            'tanggal' => $sekarang,
+        ];
+        $keluar = [
+            "id_user" => $id_user,
+                "id_kategori"=> $id_kat,
+                "keterangan"=> $ket,
+                "tanggal"=>$sekarang,
+                "jumlah"=>$selisih
+        ];
+        $this->M_tujuan->detail($data);
+        $this->M_transaksi->insert($keluar);
+        redirect("menu/tujuan");
     }
 
     // public function delete($id)

@@ -14,6 +14,9 @@ class M_tujuan extends CI_Model
     {
         $this->db->insert($this->table, $data);
     }
+    public function detail($data){
+        $this->db->insert('detail_tujuan',$data);
+    }
     function update($id,$uang){
         $data = array(
             "uang_sekarang"=>$uang
@@ -34,6 +37,17 @@ class M_tujuan extends CI_Model
             $this->db->where("rencana_keuangan.id_user", $id);
         }
         return $this->db->get()->result_array();
+    }
+    public function get_detail($id_rencana) {
+        $this->db->select("*");
+        $this->db->from('detail_tujuan');
+        if ($id_rencana != 0) {
+            $this->db->where("detail_tujuan.id_rencana", $id_rencana);
+        }
+        return $this->db->get()->result_array();
+        // $this->db->where('id_rencana', $id_rencana);
+        // $query = $this->db->get('detail_tujuan');
+        // return $query->result();
     }
     public function get_sum_keluar($id = 0)
     {
