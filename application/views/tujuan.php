@@ -1,13 +1,13 @@
 <div class="container-fluid">
     <div class="card">
-    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-        <h3 class="card-title">Tujuan keuangan</h3>
-    </div>
-    <div class="ml-auto">
-        <a href="<?= base_url('index.php/menu/tujuan/tambah') ?>" class="btn btn-primary">Tambah Goal</a>
-    </div>
-</div>
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h3 class="card-title">Tujuan keuangan</h3>
+            </div>
+            <div class="ml-auto">
+                <a href="<?= base_url('index.php/menu/tujuan/tambah') ?>" class="btn btn-primary">Tambah Goal</a>
+            </div>
+        </div>
 
 
         <div class="card-body">
@@ -18,63 +18,119 @@
                         <th>Tujuan(Goal)</th>
                         <th>Terkumpul sekarang</th>
                         <th>Total yang dibutuhkan</th>
-                        <th>Progress</th>
-                        <th style="width: 40px">Tanggal</th>
+                        <th>Tanggal Dibuat</th>
+                        <th>Tanggal</th>
+                        <th>Hitung Mundur</th>
+                        <th style="width:30px">Progress</th>
+                        <th>Detail</th>
                     </tr>
                 </thead>
-                <tbody><?php $no = 1?>
-                    <?php foreach ($tujuan as $goal):?>
-                    <tr>
-                        <td><?=$no++?></td>
-                        <td><?= $goal['tujuan_keuangan']?></td>
-                        <td>Rp<?= number_format($goal['uang_sekarang'],0,',','.')?></td>
-                        <td>Rp<?= number_format($goal['jumlah_dibutuhkan'],0,',','.')?></td>
-                        <td>
-                        <div class="progress progress-xs">
-    <div class="progress-bar progress-bar-danger" style="width: <?= $goal['uang_sekarang'] / $goal['jumlah_dibutuhkan'] * 100 ?>%   "><span class="badge bg-primary"><?= number_format($goal['uang_sekarang'] / $goal['jumlah_dibutuhkan'] * 100, 2) ?>
-%</span></div>
-</div>
+                <tbody>
+                    <?php $no = 1 ?>
+                    <?php foreach ($tujuan as $goal):
+                        // Menghitung selisih antara tanggal target dan tanggal sekarang
+                        $tanggalTarget = new DateTime($goal['tanggal_target']);
+                        $tanggalSekarang = new DateTime();
+                        $selisih = $tanggalSekarang->diff($tanggalTarget);
 
-                        </td>
-                        <td><?= $goal['tanggal_target']?></td>
-                    </tr>
-                    <?php endforeach;?>
-                    <tr>
-                        <td>2.</td>
-                        <td>Dana beli baju</td>
-                        <td>Rp1.400.000</td>
-                        <td>Rp2.000.000</td>
-                        <td>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar bg-warning" style="width: 70%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>Sepatu Baru</td>
-                        <td>Rp600.000</td>
-                        <td>Rp2.000.000</td>
-                        <td>
-                            <div class="progress progress-xs progress-striped active">
-                                <div class="progress-bar bg-primary" style="width: 30%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td>Modal Ngedate</td>
-                        <td>Rp1.800.000</td>
-                        <td>Rp2.000.000</td>    
-                        <td>
-                            <div class="progress progress-xs progress-striped active">
-                                <div class="progress-bar bg-success" style="width: 90%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-success">90%</span></td>
-                    </tr>
+                        // Mendapatkan tahun, bulan, dan hari dari selisih
+                        $tahun = $selisih->y;
+                        $bulan = $selisih->m;
+                        $hari = $selisih->d;
+                        ?>
+                        <tr>
+                            <td>
+                                <?= $no++ ?>
+                            </td>
+                            <td>
+                                <?= $goal['tujuan_keuangan'] ?>
+                            </td>
+                            <td>Rp
+                                <?= number_format($goal['uang_sekarang'], 0, ',', '.') ?>
+                            </td>
+                            <td>Rp
+                                <?= number_format($goal['jumlah_dibutuhkan'], 0, ',', '.') ?>
+                            </td>
+                            <td>
+                                <?= date('d/m/Y', strtotime($goal['tanggal_buat'])) ?>
+                            </td>
+                            <td>
+                                <?= date('d/m/Y', strtotime($goal['tanggal_target'])) ?>
+                            </td>
+                            <td>
+                                <?= $tahun ?> y
+                                <?= $bulan ?> m
+                                <?= $hari ?> d
+                            </td>
+                            <td>
+                                <?php $persen = number_format($goal['uang_sekarang'] / $goal['jumlah_dibutuhkan'] * 100, 2);
+                                $warna = "danger";
+                                if ($persen >= 90) {
+                                    $warna = "primary";
+                                } elseif ($persen >= 60) {
+                                    $warna = "success";
+                                } elseif ($persen >= 30) {
+                                    $warna = "warning";
+                                } else {
+                                    $warna = "danger";
+                                }
+
+
+                                ?>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-danger" style="width: <?= $persen ?>%;   ">
+                                        <span class="badge bg-<?= $warna ?>">
+                                            <?= $persen ?>
+                                            %
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                    data-target="#myModal">Detail</button>
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- konten modal-->
+                                        <div class="modal-content">
+                                            <!-- heading modal -->
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Detail pembagian gaji</h4>
+                                            </div>
+                                            <!-- body modal -->
+                                            <div class="modal-body">
+                                                <div class="card card-row card-secondary">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">progress </h3>
+                                                    </div>
+                                                    <div class="card-body" style="max-height: 280px; overflow-y: auto;">
+                                                        <?php for ($i = 1; $i <= 10; $i++): ?>
+                                                            <div class="card card-primary card-outline">
+                                                                <div class="card-header">
+                                                                    <h5 class="card-title">
+                                                                        <?= "Proses ke " . $i ?>
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+                                                        <?php endfor; ?>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- footer modal -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Button
+                                                    Untuk Menutup Modal</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -90,3 +146,30 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var rows = $('.table tbody tr');
+        var rowsPerPage = 10;
+        var totalPages = Math.ceil(rows.length / rowsPerPage);
+        var currentPage = 1;
+
+        showPage(currentPage);
+
+        $('#pagination').twbsPagination({
+            totalPages: totalPages,
+            visiblePages: 5,
+            onPageClick: function (event, page) {
+                currentPage = page;
+                showPage(currentPage);
+            }
+        });
+
+        function showPage(page) {
+            var start = (page - 1) * rowsPerPage;
+            var end = start + rowsPerPage;
+
+            rows.hide();
+            rows.slice(start, end).show();
+        }
+    });
+</script>
