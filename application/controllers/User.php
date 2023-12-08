@@ -37,6 +37,7 @@ public function index()
     $keluar = $this->M_transaksi->get_sum_keluar($id);
     $masuk = $this->M_transaksi->get_sum_masuk($id);
     $pie_masuk =  $this->M_transaksi->get_total_uang_pemasukkan_per_kategori($id);
+    $pie_keluar =  $this->M_transaksi->get_total_uang_pengeluaran_per_kategori($id);
 
 	$total_k = isset($keluar['total_pengeluaran']) ? $keluar['total_pengeluaran'] : 0;
     $total_m = isset($masuk['total_pemasukkan']) ? $masuk['total_pemasukkan'] : 0;
@@ -44,7 +45,8 @@ public function index()
 $data = [
     "total_k" => $total_k,
     "total_m" => $total_m,
-    "pemasukkan_kategori" => $pie_masuk
+    "pemasukkan_kategori" => $pie_masuk,
+    "pengeluaran_kategori" => $pie_keluar
 ];
 
 $this->load->view('templates/header');

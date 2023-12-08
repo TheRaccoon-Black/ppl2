@@ -93,6 +93,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item menu-open active">
+                            <a href="<?= base_url('index.php/menu/lacakmasuk')?>" class="nav-link active">
+                                <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                                <p>
+                                    Pelacakan pemasukkan
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item menu-open">
                             <a href="<?= base_url('index.php/user/rencana')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-money-check-alt"></i>

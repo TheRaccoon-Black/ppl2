@@ -58,7 +58,7 @@ class Tujuan extends CI_Controller
     public function tambah()
     {
         $this->load->model('M_tujuan');
-        $this->load->model('M_kategori');
+        $this->load->model('M_transaksi');
         $this->load->model('M_kategori');
         $post = $this->input->post();
 
@@ -108,8 +108,8 @@ class Tujuan extends CI_Controller
         $post = $this->input->post();
         $sekarang = $this->input->post('waktu');
         $uang = $this->input->post('uang_sekarang');
-        $ket = $this->input->post('ket');
-        $id_user = $this->input->post('id_user');
+        // $ket = $this->input->post('ket');
+        // $id_user = $this->input->post('id_user');
         $uang_selisih = $this->input->post('selisih');
         $selisih = $uang - $uang_selisih;
         $this->M_tujuan->update(
@@ -121,15 +121,15 @@ class Tujuan extends CI_Controller
             'jumlah' => $selisih,
             'tanggal' => $sekarang,
         ];
-        $keluar = [
-            "id_user" => $id_user,
-                "id_kategori"=> $id_kat,
-                "keterangan"=> $ket,
-                "tanggal"=>$sekarang,
-                "jumlah"=>$selisih
-        ];
+        // $keluar = [
+        //     "id_user" => $id_user,
+        //         "id_kategori"=> $id_kat,
+        //         "keterangan"=> $ket,
+        //         "tanggal"=>$sekarang,
+        //         "jumlah"=>$selisih
+        // ];
         $this->M_tujuan->detail($data);
-        $this->M_transaksi->insert($keluar);
+        // $this->M_transaksi->insert($keluar);
         redirect("menu/tujuan");
     }
 

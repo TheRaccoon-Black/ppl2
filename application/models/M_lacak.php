@@ -35,6 +35,32 @@ class M_lacak extends CI_Model
             'jumlah' => 'Rp' . number_format($row['jumlah'], 0, ',', '.'),
         ];
     }
+    
+
+    return $formattedData;
+}
+public function get_transaksi_masuk($id = 0)
+{
+    $this->db->select("*");
+    $this->db->from('transaksi_keuangan');
+    $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
+    
+    if ($id != 0) {
+        $this->db->where("transaksi_keuangan.id_user", $id);
+        $this->db->where("kategori_transaksi.Deskripsi", "pemasukkan");
+    }
+
+    $result = $this->db->get()->result_array();
+
+   
+    $formattedData = [];
+    foreach ($result as $row) {
+        $formattedData[$row['tanggal']][] = [
+            'transaksi' => $row['keterangan'],
+            'kategori' => $row['namaKategori'],
+            'jumlah' => 'Rp' . number_format($row['jumlah'], 0, ',', '.'),
+        ];
+    }
 
     return $formattedData;
 }
@@ -54,7 +80,7 @@ class M_lacak extends CI_Model
 
         return $this->db->get()->result_array();
     }
-    public function get_kategori($id)
+        public function get_kategori($id)
     {
         // $query = $this->db->get('kategori_transaksi');
         // return $query->result();

@@ -143,7 +143,7 @@
                                                     action="<?= base_url('index.php/menu/tujuan/update/' . $goal['id_rencana']) ?>"
                                                     method="post">
                                                     <input type="hidden" name="ket" value="<?=$goal['tujuan_keuangan']?>">
-                                                    <input type="hidden" name="id_user" value="<?=$id_user?>">
+                                                    <!-- <input type="hidden" name="id_user" value="<?=$id_user?>"> -->
                                                     <?php $waktu = date('Y/m/d');?>
                                                     <label for="uang_sekarang">Terkumpul Sekarang</label>
                                                     <input type="number" class="form-control"

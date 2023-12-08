@@ -73,7 +73,16 @@ class M_transaksi extends CI_Model
     $this->db->group_by('kategori_transaksi.id_kategori, kategori_transaksi.namaKategori');
     return $this->db->get()->result_array();
 }
-
+public function get_total_uang_pengeluaran_per_kategori($id_user)
+{
+    $this->db->select('kategori_transaksi.namaKategori, SUM(transaksi_keuangan.jumlah) AS jumlah_transaksi');
+    $this->db->from('transaksi_keuangan');
+    $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
+    $this->db->where('transaksi_keuangan.id_user', $id_user);
+    $this->db->where('kategori_transaksi.Deskripsi', 'pengeluaran');
+    $this->db->group_by('kategori_transaksi.id_kategori, kategori_transaksi.namaKategori');
+    return $this->db->get()->result_array();
+}
 
     public function get_kategori($id)
     {
