@@ -102,7 +102,7 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/user/rencana')?>" class="nav-link active">
+                            <a href="<?= base_url('index.php/menu/rencana')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-money-check-alt"></i>
                                 <p>
                                     Perencanaan Anggaran

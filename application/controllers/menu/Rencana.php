@@ -1,59 +1,26 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 /**
- * @property M_transaksi $M_transaksi
+ * @property M_anggaran $M_anggaran
  */
-class Tujuan extends CI_Controller
+class Rencana extends CI_Controller
 {
 
     public function index()
     {
-        $this->load->model('M_tujuan');
+        $this->load->model('M_anggaran');
         $id = $this->session->userdata('id');
-        $tujuan = $this->M_tujuan->get_tujuan($id);
+        $anggaran = $this->M_anggaran->get_all_data($id);
         $data = [
-            "tujuan" => $tujuan,
+            "rencana" => $anggaran,
         ];
+        // echo var_dump($data);
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('tujuan', $data);
+        $this->load->view('rencana', $data);
         $this->load->view('templates/footer');
     }
 
-    // public function tambah()
-    // {
-    //     $this->load->model("M_transaksi");
-    //     $post = $this->input->post();
-
-    //     if (empty($post)) {
-    //         $id_user = $this->session->userdata('id');
-    //         // $kategori = $this->M_transaksi->get_kategori($id_user);
-    //         // $kategori = $this->M_transaksi->get_kategori($id_user);
-    //         // var_dump($kategori);
-    //         $relasi = array(
-    //             "kategori" => $kategori
-    //         );
-    //         $this->load->view('templates/header');
-    //         $this->load->view('templates/sidebar');
-    //         $this->load->view("v_tambahTransaksi", $relasi);
-    //         $this->load->view('templates/footer');
-    //     } else {
-    //         $id_user = $this->input->post("id_user");
-    //         $id_kat = $this->input->post("kategori");
-    //         $nama = $this->input->post("nama_transaksi");
-    //         $tanggal = $this->input->post("tanggal");
-    //         $jumlah = $this->input->post("jumlah");
-    //         $data = array(
-    //             "id_user" => $id_user,
-    //             "id_kategori"=> $id_kat,
-    //             "keterangan"=> $nama,
-    //             "tanggal"=>$tanggal,
-    //             "jumlah"=>$jumlah
-    //         );
-    //         $this->M_transaksi->insert($data, 'transaksi_keuangan');
-    //         redirect("menu/laporan");
-    //     }
-    // }
 
     public function tambah()
     {

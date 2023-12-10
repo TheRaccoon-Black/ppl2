@@ -2,7 +2,7 @@
 <?= $this->session->userdata("username") ?>
 <div class="card card-primary">
     <div class="card-header">
-        <h3 class="card-title">Quick Example</h3>
+        <h3 class="card-title"><strong>Tambah Transaksi</strong></h3>
         <div class="d-flex flex-row-reverse">
             <a href="http://localhost/ppl2/index.php/kategori" class="btn btn-secondary">Tambah Kategori</a>
         </div>
