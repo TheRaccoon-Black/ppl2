@@ -78,7 +78,7 @@
                     </a>
                   </li> -->
                         <li class="nav-item menu-open active">
-                            <a href="<?= base_url('index.php/user')?>" class="nav-link active">
+                            <a href="<?= base_url('index.php/admin')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-wallet"></i>
                                 <p>
                                     Dashboard
@@ -89,7 +89,7 @@
                             <a href="<?= base_url('index.php/user/lacak')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                 <p>
-                                    Pelacakan pengeluaran
+                                    Riwayat
                                 </p>
                             </a>
                         </li>

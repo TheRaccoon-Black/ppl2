@@ -45,9 +45,7 @@ class M_tujuan extends CI_Model
             $this->db->where("detail_tujuan.id_rencana", $id_rencana);
         }
         return $this->db->get()->result_array();
-        // $this->db->where('id_rencana', $id_rencana);
-        // $query = $this->db->get('detail_tujuan');
-        // return $query->result();
+
     }
     public function get_sum_keluar($id = 0)
     {
@@ -78,16 +76,7 @@ class M_tujuan extends CI_Model
 
         return $this->db->get()->row_array(); // Use row_array() instead of result_array()
     }
-    // public function get_pemasukkan_per_kategori($id_user)
-    // {
-    //     $this->db->select('kategori_transaksi.Deskripsi, COUNT(transaksi_keuangan.id_transaksi) as jumlah_transaksi');
-    //     $this->db->from('transaksi_keuangan');
-    //     $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
-    //     $this->db->where('transaksi_keuangan.id_user', $id_user);
-    //     $this->db->where('kategori_transaksi.Deskripsi', 'pemasukkan');
-    //     $this->db->group_by('kategori_transaksi.id_kategori');
-    //     return $this->db->get()->result_array();
-    // }
+
     public function get_total_uang_pemasukkan_per_kategori($id_user)
 {
     $this->db->select('kategori_transaksi.namaKategori, SUM(transaksi_keuangan.jumlah) AS jumlah_transaksi');
@@ -102,8 +91,6 @@ class M_tujuan extends CI_Model
 
     public function get_kategori($id)
     {
-        // $query = $this->db->get('kategori_transaksi');
-        // return $query->result();
         $this->db->select("*");
         $this->db->from("kategori_transaksi");
         $this->db->where("id_user", $id);

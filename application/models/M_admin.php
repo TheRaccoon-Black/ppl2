@@ -10,20 +10,31 @@
             }
             return $this->db->get()->result_array();
         }
-        // function input_data_user($nama, $pass,$foto=null){
-        //     $data = [
-        //         "nama_user"=>$nama,
-        //         "pw"=>$pass,
-        //         "foto"=>$foto
-                
-        //     ];
-        //     if($this->db->insert("user",$data)){
-        //         $id_user = $this->db->insert_id();
-        //         return $id_user;
-        //     }else{
-        //         return 0;
-        //     }
-        // }
+        public function jumlah_pengeluaran() {
+
+            $this->db->select('SUM(jumlah) as uangK');
+            $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
+            $this->db->where('kategori_transaksi.Deskripsi', 'Pengeluaran');
+            $query = $this->db->get('transaksi_keuangan');
+    
+            return $query->row()->uangK;
+        }
+        public function jumlah_user() {
+         
+            $this->db->select('count(id_user) as jumlah');
+            $query = $this->db->get('users');
+    
+            return $query->row()->jumlah;
+        }
+        public function jumlah_masuk() {
+
+            $this->db->select('SUM(jumlah) as uangM');
+            $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
+            $this->db->where('kategori_transaksi.Deskripsi', 'Pemasukkan');
+            $query = $this->db->get('transaksi_keuangan');
+    
+            return $query->row()->uangM;
+        }
         function hapus_data_user($id){
             $this->db->where("id_user",$id);
             $this->db->delete("users");
@@ -48,7 +59,7 @@
                 return false;
             }
         }
-
+        
         public function cek_login($email, $password) {
             $this->db->where('email', $email);
             $this->db->where('password', $password);

@@ -20,41 +20,6 @@ class Tujuan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // public function tambah()
-    // {
-    //     $this->load->model("M_transaksi");
-    //     $post = $this->input->post();
-
-    //     if (empty($post)) {
-    //         $id_user = $this->session->userdata('id');
-    //         // $kategori = $this->M_transaksi->get_kategori($id_user);
-    //         // $kategori = $this->M_transaksi->get_kategori($id_user);
-    //         // var_dump($kategori);
-    //         $relasi = array(
-    //             "kategori" => $kategori
-    //         );
-    //         $this->load->view('templates/header');
-    //         $this->load->view('templates/sidebar');
-    //         $this->load->view("v_tambahTransaksi", $relasi);
-    //         $this->load->view('templates/footer');
-    //     } else {
-    //         $id_user = $this->input->post("id_user");
-    //         $id_kat = $this->input->post("kategori");
-    //         $nama = $this->input->post("nama_transaksi");
-    //         $tanggal = $this->input->post("tanggal");
-    //         $jumlah = $this->input->post("jumlah");
-    //         $data = array(
-    //             "id_user" => $id_user,
-    //             "id_kategori"=> $id_kat,
-    //             "keterangan"=> $nama,
-    //             "tanggal"=>$tanggal,
-    //             "jumlah"=>$jumlah
-    //         );
-    //         $this->M_transaksi->insert($data, 'transaksi_keuangan');
-    //         redirect("menu/laporan");
-    //     }
-    // }
-
     public function tambah()
     {
         $this->load->model('M_tujuan');
@@ -141,14 +106,4 @@ class Tujuan extends CI_Controller
         redirect("menu/tujuan");
     }
 
-    // public function delete($id)
-    // {
-    //     $this->load->model("M_kategori");
-    //     $result = $this->M_kategori->delete($id);
-    //     if ($result) {
-    //         redirect("kategori/index");
-    //     } else {
-    //         echo "gagal menghapus data";
-    //     }
-    // }
 }

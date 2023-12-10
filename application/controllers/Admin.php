@@ -10,10 +10,17 @@
         function index(){
             $this->load->model("M_admin");
             $user = $this->M_admin->get_data_user();
+            $jumlah = $this->M_admin->jumlah_user();
+            $uangk = $this->M_admin->jumlah_pengeluaran();
+            $uangm = $this->M_admin->jumlah_masuk();
            $data = [
             // "judul"=> "ya aku",
             // "isi"=>"ya isi",
             "user"=>$user,
+            "jumser"=>$jumlah,
+            "uangK"=>$uangk,
+            "uangM"=>$uangm
+
            ];
            
             $this->load->view('admin/templates/header');

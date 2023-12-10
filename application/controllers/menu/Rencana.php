@@ -48,11 +48,6 @@ class Rencana extends CI_Controller
             $target = $this->input->post('tanggal');
             $set = $this->input->post('jumlah_sekarang');
             $goal = $this->input->post('nama_goal');
-
-            // $this->db->select('id_kategori');
-            // $this->db->from('kategori_transaksi');
-            // $this->db->where('namaKategori', $goal);
-            // $this->db->where('id_user', $id_user);
             $kategori = [
                 'id_user' => $id_user,
                 'namaKategori'=> $goal,
@@ -108,14 +103,4 @@ class Rencana extends CI_Controller
         redirect("menu/tujuan");
     }
 
-    // public function delete($id)
-    // {
-    //     $this->load->model("M_kategori");
-    //     $result = $this->M_kategori->delete($id);
-    //     if ($result) {
-    //         redirect("kategori/index");
-    //     } else {
-    //         echo "gagal menghapus data";
-    //     }
-    // }
 }
