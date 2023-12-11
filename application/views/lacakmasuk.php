@@ -1,7 +1,39 @@
 <section class="content">
     <div class="container-fluid">
-        <div class="d-flex flex-row-reverse mb-5">
-            <a href="" class="btn btn-primary">Tambah Data</a>
+    <div class="d-flex justify-content-between mb-3">
+            <div>
+                <h2 class="m-0 text-dark">Laporan Uang Masuk</h2>
+                <p class="m-0 text-muted">Filter berdasarkan bulan dan tahun:</p>
+                <form action="" method="post" class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="bulan" class="sr-only">Bulan</label>
+                        <select name="bulan" id="bulan" class="form-control">
+                            <option value="all">Semua Data</option>
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                            <!-- Tambahkan opsi untuk bulan lainnya -->
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="tahun" class="sr-only">Tahun</label>
+                        <input type="text" name="tahun" id="tahun" class="form-control" placeholder="Tahun">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Filter</button>
+                </form>
+            </div>
+            <div>
+                <a href="#" class="btn btn-primary">Tambah Data</a>
+            </div>
         </div>
 
         <?php foreach ($transaksi as $tanggal => $data): ?>

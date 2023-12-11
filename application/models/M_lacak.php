@@ -4,29 +4,37 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_lacak extends CI_Model
 {
     public function __construct()
-        {
-            parent::__construct();
-            $this->table = "transaksi_keuangan";
-            $this->post = $this->input->post();
-        }    
+    {
+        parent::__construct();
+        $this->table = "transaksi_keuangan";
+        $this->post = $this->input->post();
+    }
     public function insert($data)
     {
         $this->db->insert('transaksi_keuangan', $data);
     }
-    public function get_transaksi_keluar($id = 0)
+    public function get_transaksi_keluar($id = 0, $bulan = null, $tahun = null)
 {
     $this->db->select("*");
     $this->db->from('transaksi_keuangan');
     $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
-    
+
     if ($id != 0) {
         $this->db->where("transaksi_keuangan.id_user", $id);
         $this->db->where("kategori_transaksi.Deskripsi", "pengeluaran");
     }
 
+    // Tambahkan kondisi untuk bulan dan tahun
+    if ($bulan && $tahun) {
+        $this->db->where('MONTH(transaksi_keuangan.tanggal)', $bulan);
+        $this->db->where('YEAR(transaksi_keuangan.tanggal)', $tahun);
+    }
+
+    // Tambahkan urutan descending berdasarkan tanggal
+    $this->db->order_by('transaksi_keuangan.tanggal', 'desc');
+
     $result = $this->db->get()->result_array();
 
-   
     $formattedData = [];
     foreach ($result as $row) {
         $formattedData[$row['tanggal']][] = [
@@ -35,24 +43,31 @@ class M_lacak extends CI_Model
             'jumlah' => 'Rp' . number_format($row['jumlah'], 0, ',', '.'),
         ];
     }
-    
 
     return $formattedData;
 }
-public function get_transaksi_masuk($id = 0)
+
+public function get_transaksi_masuk($id = 0, $bulan = null, $tahun = null)
 {
     $this->db->select("*");
     $this->db->from('transaksi_keuangan');
     $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
-    
+
     if ($id != 0) {
         $this->db->where("transaksi_keuangan.id_user", $id);
         $this->db->where("kategori_transaksi.Deskripsi", "pemasukkan");
     }
 
+    if ($bulan && $tahun) {
+        $this->db->where('MONTH(transaksi_keuangan.tanggal)', $bulan);
+        $this->db->where('YEAR(transaksi_keuangan.tanggal)', $tahun);
+    }
+
+    // Tambahkan urutan ascending berdasarkan tanggal
+    $this->db->order_by('transaksi_keuangan.tanggal', 'desc');
+
     $result = $this->db->get()->result_array();
 
-   
     $formattedData = [];
     foreach ($result as $row) {
         $formattedData[$row['tanggal']][] = [
@@ -64,6 +79,7 @@ public function get_transaksi_masuk($id = 0)
 
     return $formattedData;
 }
+
 
     function get_sum_keluar($id = 0)
     {
@@ -80,7 +96,7 @@ public function get_transaksi_masuk($id = 0)
 
         return $this->db->get()->result_array();
     }
-        public function get_kategori($id)
+    public function get_kategori($id)
     {
         // $query = $this->db->get('kategori_transaksi');
         // return $query->result();
