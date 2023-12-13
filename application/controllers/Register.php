@@ -7,7 +7,8 @@ class Register extends CI_Controller {
        parent::__construct();
        $this->load->library(array('form_validation'));
        $this->load->helper(array('url','form'));
-       $this->load->model('m_login'); //call model
+       $this->load->model('m_login'); 
+       $this->load->model('M_parent');
    }
 
    public function index() {
@@ -27,6 +28,13 @@ class Register extends CI_Controller {
            $data['password'] =    md5($this->input->post('password'));
 
            $this->m_login->daftar($data);
+           $id_user = $this->db->insert_id();
+           $kategori = [
+            'id_user' => $id_user,
+            'kategori_parent'=> "pemasukkan",
+            'persentase' => 0,
+        ];
+            $this->M_parent->insert($kategori,"kategori_parent");
 
            $pesan['message'] =    "Pendaftaran berhasil";
 
