@@ -15,6 +15,33 @@
          function get_data_user($id = 0){
             $this->db->select("*");
             $this->db->from("kategori_transaksi");
+            $this->db->join('kategori_parent', 'kategori_parent.id_parent = kategori_transaksi.id_parent');
+            if($id != 0){
+                $this->db->where("kategori_transaksi.id_user",$id);
+            }
+            return $this->db->get()->result_array();
+        }
+        function get_parent($id = 0){
+            $this->db->select("*");
+            $this->db->from("kategori_parent");
+            if($id != 0){
+                $this->db->where("id_user",$id);
+                $this->db->where("persentase <>", 0);
+            }
+            return $this->db->get()->result_array();
+        }
+        function get_parent2($id = 0){
+            $this->db->select("*");
+            $this->db->from("kategori_parent");
+            if($id != 0){
+                $this->db->where("id_user",$id);
+                $this->db->where("persentase", 0);
+            }
+            return $this->db->get()->result_array();
+        }
+        function get_parent3($id = 0){
+            $this->db->select("*");
+            $this->db->from("kategori_parent");
             if($id != 0){
                 $this->db->where("id_user",$id);
             }

@@ -93,7 +93,26 @@ public function get_total_uang_pengeluaran_per_kategori($id_user)
         $this->db->where("id_user", $id);
         return $this->db->get()->result_array();
     }
-
+    public function get_kategori_keluar($id=0){
+        $this->db->select("*");
+            $this->db->from("kategori_transaksi");
+            $this->db->join('kategori_parent', 'kategori_parent.id_parent = kategori_transaksi.id_parent');
+            if($id != 0){
+                $this->db->where("kategori_transaksi.id_user",$id);
+                $this->db->where('kategori_parent.persentase <>',0);
+            }
+            return $this->db->get()->result_array();
+    }
+    public function get_kategori_masuk($id=0){
+        $this->db->select("*");
+            $this->db->from("kategori_transaksi");
+            $this->db->join('kategori_parent', 'kategori_parent.id_parent = kategori_transaksi.id_parent');
+            if($id != 0){
+                $this->db->where("kategori_transaksi.id_user",$id);
+                $this->db->where('kategori_parent.persentase',0);
+            }
+            return $this->db->get()->result_array();
+    }
 
     function delete($id)
     {

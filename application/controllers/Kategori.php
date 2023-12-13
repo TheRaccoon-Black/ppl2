@@ -9,29 +9,68 @@ class Kategori extends CI_Controller {
         $this->load->model('M_kategori');
         $id = $this->session->userdata('id');
         $user = $this->M_kategori->get_data_user($id);
+        $ortu = $this->M_kategori->get_parent3($id);
         $keluar = $this->M_kategori->get_data_pengeluaran($id);
         $masuk = $this->M_kategori->get_data_pemasukkan($id);
         $data = [
             "kategori"=>$user,
             "keluar"=>$keluar,
-            "masuk"=>$masuk
+            "masuk"=>$masuk,    
+            "parent"=>$ortu
         ];
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('v_kategori', $data);
         $this->load->view('templates/footer');
     }
-    
+    public function index2() {
+        $this->load->model('M_kategori');
+        $id = $this->session->userdata('id');
+        $user = $this->M_kategori->get_data_user($id);
+        $ortu = $this->M_kategori->get_parent2($id);
+        $keluar = $this->M_kategori->get_data_pengeluaran($id);
+        $masuk = $this->M_kategori->get_data_pemasukkan($id);
+        $data = [
+            "kategori"=>$user,
+            "keluar"=>$keluar,
+            "masuk"=>$masuk,    
+            "parent"=>$ortu
+        ];
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('v_kategoriMasuk', $data);
+        $this->load->view('templates/footer');
+    }
+    public function index3() {
+        $this->load->model('M_kategori');
+        $id = $this->session->userdata('id');
+        $user = $this->M_kategori->get_data_user($id);
+        $ortu = $this->M_kategori->get_parent($id);
+        $keluar = $this->M_kategori->get_data_pengeluaran($id);
+        $masuk = $this->M_kategori->get_data_pemasukkan($id);
+        $data = [
+            "kategori"=>$user,
+            "keluar"=>$keluar,
+            "masuk"=>$masuk,    
+            "parent"=>$ortu
+        ];
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('v_kategori_keluar', $data);
+        $this->load->view('templates/footer');
+    }
     function tambah(){
         $this->load->model('M_kategori');
         $id_user = $this->input->post('id_user');
         $kategori = $this->input->post('namaKategori');
         $ket = $this->input->post('Deskripsi');
+        $keluar = $this->input->post("keluar");
  
         $data = array(
             'id_user' => $id_user,
             'namaKategori' => $kategori,
             'Deskripsi' => $ket,
+            'id_parent' => $keluar
             );
         $this->M_kategori->insert($data,'kategori_transaksi');
         redirect('kategori/index');

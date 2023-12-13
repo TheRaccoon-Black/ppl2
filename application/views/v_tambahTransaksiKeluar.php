@@ -1,50 +1,34 @@
 <?php $user_id = $this->session->userdata('id') ?>
 <?= $this->session->userdata("username") ?>
 <div class="card card-primary">
-    <!-- <div class="card-header">
-        <h3 class="card-title">Quick Example</h3>
+    <div class="card-header">
+        <h3 class="card-title"><strong>Tambah Transaksi</strong></h3>
         <div class="d-flex flex-row-reverse">
-            <a href="http://localhost/ppl2/index.php/kategori" class="btn btn-secondary">Tambah Kategori</a>
+            <a href="../../kategori/index3" class="btn btn-secondary">Tambah Kategori</a>
         </div>
-    </div> -->
+    </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <?php echo form_open_multipart(); 
-    $kini = date('Y/m/d');
-    ?>
+    <?php echo form_open_multipart(); ?>
     <form method="post" enctype="multipart/form-data">
         <input type="hidden" name="id_user" value="<?= $user_id ?>">
-        <input type="hidden" name="tgl_sekarang" id="tgl_sekarang_input" value="<?= $kini ?>">
-<script>
-    // Ambil nilai tanggal dari input
-    let tglSekarangInput = document.getElementById('tgl_sekarang_input');
-    let tglSekarangValue = tglSekarangInput.value;
-
-    // Split tanggal menjadi array [yyyy, mm, dd]
-    let dateParts = tglSekarangValue.split('/');
-
-    // Buat format baru: yyyy-mm-dd
-    let formattedTanggal = dateParts[0] + '-' + dateParts[1] + '-' + dateParts[2];
-
-    // Setel nilai tanggal yang telah diformat ke input
-    tglSekarangInput.value = formattedTanggal;
-</script>
-        <input type="hidden" name="jumlah_sekarang" value="<?=0?>">
         <div class="card-body">
             <div class="form-group">
-                <label for="">Kategori Tujuan</label>
-                <select name="parentkat" class="form-control">
-                    <?php foreach($parkat as $par): ?>
-                    <option value="<?=$par['id_parent']?>"><?=$par['kategori_parent']?></option>
-                    <?php endforeach?>
+                <label for="exampleInputEmail1">Nama Transaksi</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="nama_transaksi" placeholder="Nama Transaksi">
+            </div>
+            <div class="form-group">
+                <label for="kategori">kategori</label>
+                <select class="form-control" name="kategori">
+                    <?php foreach ($kategori as $kat) : ?>
+                        <option value="<?= $kat['id_kategori']; ?>">
+                            <?= $kat["namaKategori"]; ?> || <?=$kat['kategori_parent']?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama Tujuan(goal)</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="nama_goal" placeholder="Nama Goal">
-            </div>
-            <div class="form-group">
-                <label>Tanggal Target</label>
+                <label>Tanggal</label>
                 <div class="input-group" id="reservationdate" data-target-input="nearest">
                     <input type="text" class="form-control" name="tanggal" placeholder="DD-MM-YYYY">
                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
@@ -57,7 +41,7 @@
             <!-- Pastikan jQuery dan datetimepicker sudah dimuat -->
 
             <div class="form-group">
-                <label for="exampleInputPassword1">Jumlah dibutuhkan(Rp)</label>
+                <label for="exampleInputPassword1">Jumlah(Rp)</label>
                 <input type="text" class="form-control" name="jumlah" id="exampleInputPassword1" placeholder="Jumlah" oninput="formatNumber(this)">
             </div>
             <script>

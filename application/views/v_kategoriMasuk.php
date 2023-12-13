@@ -16,27 +16,29 @@ $nama = $this->session->userdata('nama');
     <div class="row mb-2">
         <div class="col">
             <input type="hidden" name="id_user" value="<?= $user_id ?>">
+            <input type="hidden" name="Deskripsi" value="pemasukkan">
             <input type="text" name="namaKategori" class="form-control" placeholder="Kategori baru">
         </div>
-        <div class="col"><select class="form-control" name="keluar">
-            <?php foreach ($parent as $pr):?>
-            <option value="<?= $pr['id_parent']?>"> <?=$pr['kategori_parent']?></option>
-            <?php endforeach?>
-        </select></div>
-        <div class="col">
+        <!-- <div class="col">
             <div class="form-group">
                 <div class="custom-control custom-radio">
                     <input type="radio" class="custom-input " name="Deskripsi" value="pengeluaran" checked="">Pengeluaran
-                    
+
                 </div>
                 <div class="custom-control custom-radio">
                     <input type="radio" class="control-input" name="Deskripsi" value="Pemasukkan">Pemasukkan
                 </div>
             </div>
-        </div>
+        </div> -->
+        <div class="col"><select class="form-control" name="keluar">
+            <?php foreach ($parent as $pr):?>
+            <option value="<?= $pr['id_parent']?>"> <?=$pr['kategori_parent']?></option>
+            <?php endforeach?>
+        </select></div>
         <div class="col"><input type="submit" style="width: 190px;margin-left:10px" class="btn btn-block btn-success"
                 value="tambah">
         </div>
+        <div class="col"></div>
 </form>
 <a href="parentkat"><div class="col btn btn-lg btn-primary mb-4" style="padding:-10px;"> + Parent kategori
         </div></a>
@@ -50,10 +52,13 @@ $nama = $this->session->userdata('nama');
             </div>
             <div class="card-body" style="max-height: 600px; overflow-y: auto;">
                 <?php foreach ($kategori as $us): ?>
-                    <div class="card card-primary card-outline">
+                    <div class="card card-primary card-outline d-flex">
                         <div class="card-header">
                             <h5 class="card-title">
-                                <?= $us['namaKategori'] ?>
+                                <?= $us['namaKategori'] ?>  
+                            </h5>
+                            <h5 class="card-title ml-auto">
+                                [<?= $us['kategori_parent'] ?>]
                             </h5>
                             <div class="card-tools">
                                 <a href="<?= base_url('index.php/kategori/delete/').$us['id_kategori']?>" class="btn btn-tool btn-link"><i class="fas fa-trash"></i></a>

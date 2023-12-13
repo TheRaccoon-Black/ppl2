@@ -31,9 +31,11 @@ class Tujuan extends CI_Controller
             $id_user = $this->session->userdata('id');
             //untuk id kategori
             $kategori = $this->M_transaksi->get_kategori($id_user);
+            $parkat = $this->M_transaksi->get_kategori_keluar($id_user);
             // var_dump($kategori);
             $relasi = array(
-                "kategori" => $kategori
+                "kategori" => $kategori,
+                "parkat" => $parkat
             );
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
@@ -46,6 +48,7 @@ class Tujuan extends CI_Controller
             $target = $this->input->post('tanggal');
             $set = $this->input->post('jumlah_sekarang');
             $goal = $this->input->post('nama_goal');
+            $par = $this->input->post('parentkat');
 
             // $this->db->select('id_kategori');
             // $this->db->from('kategori_transaksi');
@@ -55,6 +58,7 @@ class Tujuan extends CI_Controller
                 'id_user' => $id_user,
                 'namaKategori'=> $goal,
                 'Deskripsi' => 'pengeluaran',
+                'id_parent' => $par
             ];
             
             $this->M_kategori->insert($kategori,'kategori_transaksi');

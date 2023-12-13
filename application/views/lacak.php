@@ -32,7 +32,7 @@
                 </form>
             </div>
             <div>
-                <a href="#" class="btn btn-primary">Tambah Data</a>
+                <a href="laporan/tambahkeluar" class="btn btn-primary">Tambah Data</a>
             </div>
         </div>
 

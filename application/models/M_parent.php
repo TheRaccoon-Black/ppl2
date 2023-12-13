@@ -15,6 +15,7 @@
          function get_data_user($id = 0){
             $this->db->select("*");
             $this->db->from("kategori_parent");
+           
             if($id != 0){
                 $this->db->where("id_user",$id);
             }
