@@ -158,8 +158,8 @@
                             <?= $conversion_rate ?>
                         </p>
                         <p>Jumlah yang Dikonversi:
-                            <?= $converted_amount ?>
-                            <?= $to_currency ?>
+                            <?= number_format($converted_amount, 0, ',', '.') ?>
+                            <?= number_format($to_currency, 0, ',', '.')?>
                         </p>
                     <?php endif; ?>
                 </div>
