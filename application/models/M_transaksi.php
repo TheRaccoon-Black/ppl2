@@ -124,4 +124,38 @@ public function get_total_uang_pengeluaran_per_kategori($id_user)
             return false;
         }
     }
+    function parentt($id){
+        $this->db->select("*");
+        $this->db->from("kategori_parent");
+        if($id!=0){
+            $this->db->where('kategori_parent.id_user',$id);
+            $this->db->where('kategori_parent.persentase <>',0);
+        }
+        return $this->db->get()->result_array();
+    }
+    function get_total_masuk($id) {
+        $this->db->select('SUM(transaksi_keuangan.jumlah) as total_masuk');
+        $this->db->from('kategori_transaksi');
+        $this->db->join('transaksi_keuangan', 'kategori_transaksi.id_kategori = transaksi_keuangan.id_kategori');
+        $this->db->where('kategori_transaksi.Deskripsi', 'pemasukkan');
+        $this->db->where("kategori_transaksi.id_kategori", $id);
+    
+        $result = $this->db->get()->row_array();
+    
+        return $result['total_masuk'];
+    }
+    public function per_kategori($id_user)
+{
+    $this->db->select('kategori_parent.kategori_parent, SUM(transaksi_keuangan.jumlah) as jum');
+    $this->db->from('kategori_parent');
+    $this->db->join('kategori_transaksi', 'kategori_parent.id_parent = kategori_transaksi.id_parent');
+    $this->db->join('transaksi_keuangan', 'kategori_transaksi.id_kategori = transaksi_keuangan.id_kategori');
+    $this->db->where('kategori_parent.id_user', $id_user);
+    $this->db->where('kategori_transaksi.Deskripsi', 'pengeluaran');
+    $this->db->group_by('kategori_parent.kategori_parent');
+
+    return $this->db->get()->result_array();
+}
+
+    
 }

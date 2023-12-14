@@ -36,6 +36,8 @@ public function index()
     $id = $this->session->userdata('id');
     $keluar = $this->M_transaksi->get_sum_keluar($id);
     $masuk = $this->M_transaksi->get_sum_masuk($id);
+    $par = $this->M_transaksi->parentt($id);
+    $per = $this->M_transaksi->per_kategori($id);
     $pie_masuk =  $this->M_transaksi->get_total_uang_pemasukkan_per_kategori($id);
     $pie_keluar =  $this->M_transaksi->get_total_uang_pengeluaran_per_kategori($id);
 
@@ -43,6 +45,8 @@ public function index()
     $total_m = isset($masuk['total_pemasukkan']) ? $masuk['total_pemasukkan'] : 0;
 
 $data = [
+    'per' =>$per,
+    "par" => $par,
     "total_k" => $total_k,
     "total_m" => $total_m,
     "pemasukkan_kategori" => $pie_masuk,
