@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 06, 2023 at 05:53 PM
+-- Generation Time: Dec 15, 2023 at 03:12 PM
 -- Server version: 8.0.35-0ubuntu0.22.04.1
 -- PHP Version: 7.4.33
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `referensi`
+-- Database: `referensi3`
 --
 
 -- --------------------------------------------------------
@@ -44,21 +44,6 @@ INSERT INTO `admin` (`admin_id`, `nama`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anggaran_bulanan`
---
-
-CREATE TABLE `anggaran_bulanan` (
-  `id_anggaran` int NOT NULL,
-  `id_user` int DEFAULT NULL,
-  `jumlah_anggaran` decimal(10,2) DEFAULT NULL,
-  `kategori_anggaran` varchar(255) DEFAULT NULL,
-  `tanggal_mulai` date DEFAULT NULL,
-  `tanggal_berakhir` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `detail_tujuan`
 --
 
@@ -69,20 +54,36 @@ CREATE TABLE `detail_tujuan` (
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `detail_tujuan`
+--
+
+INSERT INTO `detail_tujuan` (`id_detail`, `id_rencana`, `jumlah`, `tanggal`) VALUES
+(26, 29, 60000000, '2023-12-13'),
+(27, 30, 100000, '2023-12-14');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hutang_piutang`
+-- Table structure for table `kategori_parent`
 --
 
-CREATE TABLE `hutang_piutang` (
-  `id_hutang` int NOT NULL,
-  `id_user` int DEFAULT NULL,
-  `nama_pemberi_hutang` varchar(255) DEFAULT NULL,
-  `jumlah_hutang` decimal(10,2) DEFAULT NULL,
-  `tanggal_peminjaman` date DEFAULT NULL,
-  `tanggal_jatuh_tempo` date DEFAULT NULL
+CREATE TABLE `kategori_parent` (
+  `id_parent` int NOT NULL,
+  `id_user` int NOT NULL,
+  `kategori_parent` varchar(25) NOT NULL,
+  `persentase` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `kategori_parent`
+--
+
+INSERT INTO `kategori_parent` (`id_parent`, `id_user`, `kategori_parent`, `persentase`) VALUES
+(1, 9, 'live cost ', 70),
+(2, 9, 'saving', 20),
+(3, 9, 'Pemasukkan', 0),
+(4, 9, 'investasi', 10);
 
 -- --------------------------------------------------------
 
@@ -93,9 +94,24 @@ CREATE TABLE `hutang_piutang` (
 CREATE TABLE `kategori_transaksi` (
   `id_kategori` int NOT NULL,
   `id_user` int NOT NULL,
+  `id_parent` int NOT NULL,
   `namaKategori` varchar(255) DEFAULT NULL,
   `Deskripsi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `kategori_transaksi`
+--
+
+INSERT INTO `kategori_transaksi` (`id_kategori`, `id_user`, `id_parent`, `namaKategori`, `Deskripsi`) VALUES
+(51, 9, 2, 'keluar_2', 'pengeluaran'),
+(56, 9, 3, 'sampingan', 'pemasukkan'),
+(57, 9, 1, 'keluar', 'pengeluaran'),
+(58, 9, 1, 'keluar_3', 'pengeluaran'),
+(59, 9, 3, 'gaji', 'pemasukkan'),
+(61, 9, 1, 'mobil xenia', 'pengeluaran'),
+(62, 9, 4, 'emas', 'pengeluaran'),
+(63, 9, 4, 'mobil', 'pengeluaran');
 
 -- --------------------------------------------------------
 
@@ -114,6 +130,14 @@ CREATE TABLE `rencana_keuangan` (
   `tanggal_target` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `rencana_keuangan`
+--
+
+INSERT INTO `rencana_keuangan` (`id_rencana`, `id_user`, `id_kategori`, `tujuan_keuangan`, `uang_sekarang`, `jumlah_dibutuhkan`, `tanggal_buat`, `tanggal_target`) VALUES
+(29, 9, 61, 'mobil xenia', 60000000, 160000000, '2023-12-13', '2025-11-12'),
+(30, 9, 63, 'mobil', 100000, 120000, '2023-12-14', '2025-11-12');
+
 -- --------------------------------------------------------
 
 --
@@ -128,6 +152,21 @@ CREATE TABLE `transaksi_keuangan` (
   `tanggal` date DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `transaksi_keuangan`
+--
+
+INSERT INTO `transaksi_keuangan` (`id_transaksi`, `id_user`, `id_kategori`, `jumlah`, `tanggal`, `keterangan`) VALUES
+(47, 9, 51, 120000, '2023-11-12', 'belibli'),
+(48, 9, 56, 16000000, '2023-12-12', 'tes masuk'),
+(49, 9, 59, 14000000, '2023-11-01', 'tes gaji'),
+(50, 9, 61, 60000000, '2023-12-13', 'mobil xenia'),
+(51, 9, 57, 17000000, '2023-11-12', 'beli baju'),
+(52, 9, 51, 1000000, '2023-12-13', 'beli teh'),
+(53, 9, 56, 100000000, '2023-11-12', 'sampingan'),
+(54, 9, 62, 120000, '2023-11-12', 'emas'),
+(55, 9, 63, 100000, '2023-12-14', 'mobil');
 
 -- --------------------------------------------------------
 
@@ -167,13 +206,6 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `anggaran_bulanan`
---
-ALTER TABLE `anggaran_bulanan`
-  ADD PRIMARY KEY (`id_anggaran`),
-  ADD KEY `id_user` (`id_user`);
-
---
 -- Indexes for table `detail_tujuan`
 --
 ALTER TABLE `detail_tujuan`
@@ -181,17 +213,18 @@ ALTER TABLE `detail_tujuan`
   ADD KEY `id_rencana` (`id_rencana`);
 
 --
--- Indexes for table `hutang_piutang`
+-- Indexes for table `kategori_parent`
 --
-ALTER TABLE `hutang_piutang`
-  ADD PRIMARY KEY (`id_hutang`),
+ALTER TABLE `kategori_parent`
+  ADD PRIMARY KEY (`id_parent`),
   ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `kategori_transaksi`
 --
 ALTER TABLE `kategori_transaksi`
-  ADD PRIMARY KEY (`id_kategori`);
+  ADD PRIMARY KEY (`id_kategori`),
+  ADD KEY `id_parent` (`id_parent`);
 
 --
 -- Indexes for table `rencana_keuangan`
@@ -230,25 +263,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `detail_tujuan`
 --
 ALTER TABLE `detail_tujuan`
-  MODIFY `id_detail` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_detail` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `kategori_parent`
+--
+ALTER TABLE `kategori_parent`
+  MODIFY `id_parent` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kategori_transaksi`
 --
 ALTER TABLE `kategori_transaksi`
-  MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `rencana_keuangan`
 --
 ALTER TABLE `rencana_keuangan`
-  MODIFY `id_rencana` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_rencana` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `transaksi_keuangan`
 --
 ALTER TABLE `transaksi_keuangan`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -261,22 +300,22 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `anggaran_bulanan`
---
-ALTER TABLE `anggaran_bulanan`
-  ADD CONSTRAINT `anggaran_bulanan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
 -- Constraints for table `detail_tujuan`
 --
 ALTER TABLE `detail_tujuan`
   ADD CONSTRAINT `detail_tujuan_ibfk_1` FOREIGN KEY (`id_rencana`) REFERENCES `rencana_keuangan` (`id_rencana`);
 
 --
--- Constraints for table `hutang_piutang`
+-- Constraints for table `kategori_parent`
 --
-ALTER TABLE `hutang_piutang`
-  ADD CONSTRAINT `hutang_piutang_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+ALTER TABLE `kategori_parent`
+  ADD CONSTRAINT `kategori_parent_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
+-- Constraints for table `kategori_transaksi`
+--
+ALTER TABLE `kategori_transaksi`
+  ADD CONSTRAINT `kategori_transaksi_ibfk_1` FOREIGN KEY (`id_parent`) REFERENCES `kategori_parent` (`id_parent`);
 
 --
 -- Constraints for table `rencana_keuangan`
