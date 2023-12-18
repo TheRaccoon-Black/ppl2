@@ -6,24 +6,24 @@ class M_anggaran extends CI_Model
     public function __construct()
         {
             parent::__construct();
-            $this->table = "anggaran_bulanan";
+            // $this->table = "anggaran_bulanan";
             $this->post = $this->input->post();
         }    
-    public function insert($data)
-    {
-        $this->db->insert('anggaran_bulanan', $data);
-    }
-    public function get_all_data($id = 0)
-{
-    $this->db->select("*");
-    $this->db->from('anggaran_bulanan');
+//     public function insert($data)
+//     {
+//         $this->db->insert('anggaran_bulanan', $data);
+//     }
+//     public function get_all_data($id = 0)
+// {
+//     $this->db->select("*");
+//     $this->db->from('anggaran_bulanan');
     
-    if ($id != 0) {
-        $this->db->where("anggaran_bulanan.id_user", $id);
+//     if ($id != 0) {
+//         $this->db->where("anggaran_bulanan.id_user", $id);
 
-    }
+//     }
 
-    return $this->db->get()->result_array();
+//     return $this->db->get()->result_array();
 
    
     // $formattedData = [];
@@ -37,5 +37,5 @@ class M_anggaran extends CI_Model
     
 
     // return $formattedData;
-}
+// }
 }

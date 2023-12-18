@@ -8,11 +8,11 @@ class Rencana extends CI_Controller
 
     public function index()
     {
-        $this->load->model('M_anggaran');
+        // $this->load->model('M_anggaran');
         $id = $this->session->userdata('id');
-        $anggaran = $this->M_anggaran->get_all_data($id);
+        // $anggaran = $this->M_anggaran->get_all_data($id);
         $data = [
-            "rencana" => $anggaran,
+            // "rencana" => $anggaran,
         ];
         // echo var_dump($data);
         $this->load->view('templates/header');

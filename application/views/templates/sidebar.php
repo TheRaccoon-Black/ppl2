@@ -102,14 +102,6 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="<?= base_url('index.php/menu/rencana')?>" class="nav-link active">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
-                                <p>
-                                    Perencanaan Anggaran
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item menu-open">
                             <a href="<?= base_url('index.php/menu/laporan')?>" class="nav-link active">
                                 <i class="nav-icon fas fa-chart-line"></i>
                                 <p>
@@ -138,6 +130,14 @@
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Tools keuangan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="<?= base_url('index.php/menu/rencana')?>" class="nav-link active">
+                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <p>
+                                    Ringkasan 
                                 </p>
                             </a>
                         </li>
