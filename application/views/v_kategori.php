@@ -38,7 +38,7 @@ $nama = $this->session->userdata('nama');
                 value="tambah">
         </div>
 </form>
-<a href="parentkat"><div class="col btn btn-lg btn-primary mb-4" style="padding:-10px;"> + Parent kategori
+<a href="../parentkat"><div class="col btn btn-lg btn-primary mb-4" style="padding:-10px;"> + Parent kategori
         </div></a>
 </div>
 <div class="row">
