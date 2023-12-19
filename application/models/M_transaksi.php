@@ -207,7 +207,19 @@ function get_keluar_bulan($id)
         $this->db->where('id_user', $id);
         return $this->db->count_all_results();
     }
+    public function sum_keluar($id_user)
+{
+    $this->db->select('COUNT(transaksi_keuangan.jumlah) as total_amount');
+    $this->db->from('kategori_parent');
+    $this->db->join('kategori_transaksi', 'kategori_parent.id_parent = kategori_transaksi.id_parent');
+    $this->db->join('transaksi_keuangan', 'kategori_transaksi.id_kategori = transaksi_keuangan.id_kategori');
+    $this->db->where('kategori_parent.id_user', $id_user);
+    $this->db->where('kategori_transaksi.Deskripsi', 'pengeluaran');
 
+    $query = $this->db->get();
+    
+    return $query->row()->total_amount; 
+}
     // ... method lainnya ...
 }
 

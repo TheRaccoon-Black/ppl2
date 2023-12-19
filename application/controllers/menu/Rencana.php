@@ -24,6 +24,7 @@ class Rencana extends CI_Controller
             'masukBulan' => $this->M_transaksi->get_masuk_bulan($id),
             'keluarBulan' => $this->M_transaksi->get_keluar_bulan($id),
             'per' => $per,
+            'sumK'  => $this->M_transaksi->sum_keluar($id),
             'katP' => $katP,
             'katM' => $katM,
             'parP' => $this->M_transaksi->count_parP($id),

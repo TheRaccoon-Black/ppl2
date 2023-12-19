@@ -66,4 +66,13 @@
             $query = $this->db->get('admin');
             return $query->row(); // Mengembalikan satu baris hasil query
         }
+        public function get_transaksi() {
+            $this->db->select('*');
+        $this->db->from('transaksi_keuangan');
+        $this->db->join('kategori_transaksi', 'transaksi_keuangan.id_kategori = kategori_transaksi.id_kategori');
+        $this->db->join('users', 'transaksi_keuangan.id_user = users.id_user');
+        $query = $this->db->get();
+
+        return $query->result();
+        }
     }

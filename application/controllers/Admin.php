@@ -28,40 +28,17 @@
             $this->load->view("admin/v_dashboardAdmin",$data);
             $this->load->view('admin/templates/footer');
             }
-        // function c(){
-        //     $this->load->model("M_admin");
-        //     $post = $this->input->post();
-        //     //form validation
-        //     if (empty($post)){
+        function riwayat(){
+            $this->load->model("M_admin");
+            $data = [
+                'transaksi' => $this->M_admin->get_transaksi()
+            ];
+            $this->load->view('admin/templates/header');
+            $this->load->view('admin/templates/sidebar');
+            $this->load->view("admin/v_riwayatAdmin",$data);
+            $this->load->view('admin/templates/footer');
 
-        //     $this->load->view('templates/header');
-        //     $this->load->view('templates/sidebar');
-        //     $this->load->view("c");
-        //     $this->load->view('templates/footer');
-            
-                
-        //     }else{
-        //         $config = [
-        //             'max-size' => 1000240,
-        //             'allowed_types' => 'jpg|jpeg|png',
-        //             'upload_path' => './foto_uploads/',
-        //             'encrypt_name' => true ,
-        //         ];
-        //         $this->load->library("upload",$config);
-        //         if(!$this->upload->do_upload('foto')){
-        //             echo $this->upload->display_errors();
-        //         }else{
-        //         echo json_encode($this->upload->data());
-        //         $foto = $this->upload->data('file_name'); 
-        //         $result = $this->Model_coba->input_data_user(
-        //             $post['nama_user'],
-        //             $post["password_user"],
-        //             $foto
-        //         );
-        //         redirect("coba");
-        //         }
-        //     }
-        // }          
+        }        
         public function d($id){
             $this->load->model("M_admin");
             $result = $this->M_admin->hapus_data_user($id);
