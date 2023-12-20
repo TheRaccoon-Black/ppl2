@@ -9,13 +9,26 @@ $nama = $this->session->userdata('nama');
 <?php endif ?>
 
 
-<form action="<?= base_url('index.php/kategori/tambah') ?>" method="post">
-    <div class="row mb-2">
-        <div class="col">
-            <input type="hidden" name="id_user" value="<?= $user_id ?>">
-            <input type="hidden" name="Deskripsi" value="pemasukkan">
-            <input type="text" name="namaKategori" class="form-control" placeholder="Kategori baru">
+<div class="row mb-4">
+    <form action="<?= base_url('index.php/kategori/tambah') ?>" method="post" class="col-12">
+        <div class="form-row">
+            <div class="col-8">
+                <input type="hidden" name="id_user" value="<?= $user_id ?>">
+                <input type="hidden" name="Deskripsi" value="pemasukkan">
+                <input type="hidden" name="keluar" value="<?php foreach ($parent as $pr): echo $pr["id_parent"]; endforeach ?>">
+                <input type="text" name="namaKategori" class="form-control" placeholder="Kategori baru">
+            </div>
+            <div class="col-2">
+                <input type="submit" class="form-control btn btn-success" value="Tambah">
+            </div>
         </div>
+    </form>
+</div>
+
+
+<div class="row mb-4">
+    <div class="col-8">
+
         <div class="card card-row card-primary">
             <div class="card-header">
                 <h3 class="card-title">Kategori</h3>
@@ -25,14 +38,17 @@ $nama = $this->session->userdata('nama');
                     <div class="card card-primary card-outline d-flex">
                         <div class="card-header">
                             <h5 class="card-title">
-                                <?= $us['namaKategori'] ?>  
+                                <?= $us['namaKategori'] ?>
                             </h5>
                             <h5 class="card-title ml-auto">
-                                [<?= $us['kategori_parent'] ?>]
+                                [
+                                <?= $us['kategori_parent'] ?>]
                             </h5>
                             <div class="card-tools">
-                                <a href="<?= base_url('index.php/kategori/delete/').$us['id_kategori']?>" class="btn btn-tool btn-link"><i class="fas fa-trash"></i></a>
-                                <a href="<?= base_url('index.php/kategori/update/').$us['id_kategori']?>" class="btn btn-tool"><i class="fas fa-pen"></i></a>
+                                <a href="<?= base_url('index.php/kategori/delete/') . $us['id_kategori'] ?>"
+                                    class="btn btn-tool btn-link"><i class="fas fa-trash"></i></a>
+                                <a href="<?= base_url('index.php/kategori/update/') . $us['id_kategori'] ?>"
+                                    class="btn btn-tool"><i class="fas fa-pen"></i></a>
                             </div>
                         </div>
                     </div>
@@ -78,4 +94,5 @@ $nama = $this->session->userdata('nama');
             </div>
         </div>
     </div>
+</div>
 </div>
