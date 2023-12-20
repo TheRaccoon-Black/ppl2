@@ -37,7 +37,7 @@
         </div>
 
         <?php foreach ($transaksi as $tanggal => $data): ?>
-            <div class="card">
+            <div class="card print-section">
                 <div class="card-header">
                     <h3 class="card-title">
                         <?= date('d-m-Y', strtotime($tanggal)) ?>
@@ -73,25 +73,29 @@
                 </div>
             </div>
         <?php endforeach; ?>
-        <button onclick="printPageAsPDF()">Print as PDF</button>
-    </div><!-- /.container-fluid -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script>
-        // Fungsi generasi PDF
-        function generatePDF() {
-            let doc = new jsPDF('p', 'pt', 'a4');
-            // Tambahkan logika untuk menambahkan konten PDF
-
-            // Contoh: Tambahkan teks ke PDF
-            doc.text('Hello, this is an auto-generated PDF!', 20, 20);
-
-            // Simpan PDF dengan nama file
-            doc.save('auto_generated.pdf');
+        <style>
+    @media print {
+        .print-section {
+            display: block !important;
         }
 
-        // Panggil fungsi generasi PDF saat halaman selesai dimuat
-        document.addEventListener('DOMContentLoaded', function () {
-            generatePDF();
-        });
-    </script>
-</section>
+        body * {
+            visibility: hidden;
+        }
+
+        .print-section, .print-section * {
+            visibility: visible;
+        }
+    }
+</style>
+
+<button onclick="printSection()" class="btn btn-primary mb-2">Print</button>
+      
+<script>
+    function printSection() {
+        window.print();
+    }
+</script>
+
+    </div><!-- /.container-fluid -->
+    </section>

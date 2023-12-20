@@ -95,7 +95,7 @@
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
         data-target="#myModal<?= $goal['id_rencana'] ?>">Detail</button>
 
-<div id="myModal<?= $goal['id_rencana'] ?>" class="modal fade" role="dialog">
+                                <div id="myModal<?= $goal['id_rencana'] ?>" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <!-- konten modal-->
                                         <div class="modal-content">
@@ -105,7 +105,7 @@
                                                 <h4 class="modal-title">log proses</h4>
                                             </div>
                                             <!-- body modal -->
-                                            <div class="modal-body">
+                                            <div class="modal-body" id="logModalContents">
                                                 <div class="card card-row card-secondary">
                                                     <div class="card-header">
                                                         <h3 class="card-title">progress </h3>
@@ -127,8 +127,9 @@
                                             </div>
                                             <!-- footer modal -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger"
-                                                    data-dismiss="modal">tutup</button>
+                                            <button type="button" class="btn btn-primary" onclick="printLog()">Print</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -220,4 +221,16 @@
             }
         });
     });
+</script>
+<script>
+    function printLog() {
+        var printContents = document.getElementById("logModalContents").innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
 </script>
