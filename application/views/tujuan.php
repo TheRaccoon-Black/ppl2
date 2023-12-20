@@ -1,5 +1,4 @@
 <?php $user_id = $this->session->userdata('id') ?>
-<?= $this->session->userdata("username") ?>
 <div class="container-fluid">
     <div class="card">
         <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">

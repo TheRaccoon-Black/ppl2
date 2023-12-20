@@ -43,4 +43,14 @@ class ParentKat extends CI_Controller {
         redirect('parentkat/index');
     }
 }    
+public function update($id){
+    $this->load->model('M_parent');
+    $persen = $this->input->post('updatePersentase');
+
+    $this->M_parent->update(
+        $id,
+        $persen
+    );
+    redirect("parentkat");
+}
 }

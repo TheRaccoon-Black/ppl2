@@ -170,4 +170,4 @@
 
             <!-- Main content -->
             <div class="content" style="margin-top:40px;">
-                <div class="container-fluid vh-100">
+                <div class="container-fluid vh-100" style="margin-bottom:50px">

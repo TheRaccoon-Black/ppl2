@@ -27,6 +27,18 @@
             $query = $this->db->get($this->table);
             return $query->row()->persentase;
         }
+        function update($id,$persen){
+            $data = array(
+                "persentase"=>$persen
+            );
+            $this->db->where("id_parent",$id);
+            $this->db->update("kategori_parent",$data);
+            if($this->db->affected_rows()>0){
+                return true;
+            }else{
+                return false;
+            }
+        }
         
     }
     

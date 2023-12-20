@@ -1,11 +1,9 @@
-<section class="content">
-    <div class="container-fluid"><!-- Content Wrapper. Contains page content -->
+
     <!-- Content Header (Page header) -->
-    <h1 class="mb-5 ml-3"><strong>Selamat Datang
-            <?php echo ucfirst($this->session->userdata('username')); ?> di Uang.KU!
+    <h1 class="mb-5 ml-3"><strong><?php echo ucfirst($this->session->userdata('username')); ?>, Selamat Datang di Uang.KU!
         </strong></h1>
 
-    <div class="container-fluid center" style="margin-bottom: 100px;">
+    <div class="container-fluid center" style="margin-bottom: px;">
         <div class="row" style="height: 200px;">
             <div class="col-lg-6 col-12">
                 <div class="small-box bg-info" style="height: 200px;">
@@ -72,8 +70,9 @@
         </div>
     <?php endforeach?>  
 </div>
-
-        <div class="row mt-5" height="200px">
+<div>
+    <div>
+        <div class="row mt-2" style="margin-bottom:100px">
             <div class="col col-6">
                 <div class="card card-primary">
                     <div class="card-header">
@@ -115,7 +114,9 @@
                 </div>
             </div>
         </div>
-
+        <div class="row mt-5"></div>
+    </div>
+    </div>
 
         <script src="<?= base_url('assets/templates') ?>/plugins/jquery/jquery.min.js"></script>
 
@@ -172,5 +173,3 @@
 
         </script>
     </div>
-</div>
-</section>

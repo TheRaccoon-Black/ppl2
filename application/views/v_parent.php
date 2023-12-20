@@ -8,10 +8,7 @@ $nama = $this->session->userdata('nama');
     </div>
 <?php endif ?>
 
-<p>Selamat datang, id
-    <?= $user_id ?> dan user
-    <?= $nama ?>!
-</p>
+<!-- <p>Selamat datang, id <?= $user_id ?> dan user <?= $nama ?>!</p> -->
 
 <!-- Button to trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -48,11 +45,38 @@ $nama = $this->session->userdata('nama');
     </div>
 </div>
 
-<!-- Rest of your code -->
+<!-- Update Persentase Modals -->
+<?php foreach ($kategoriPar as $par): ?>
+    <div class="modal fade" id="updateModal<?= $par['id_parent'] ?>" tabindex="-1" role="dialog"
+        aria-labelledby="updateModalLabel<?= $par['id_parent'] ?>" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel<?= $par['id_parent'] ?>">Update Persentase</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Update Persentase Form inside modal -->
+                    <form action="<?= base_url('index.php/parentkat/update/') . $par['id_parent'] ?>" method="post">
+                        <div class="form-group">
+                            <label for="updatePersentase">Alokasi (dalam persentase)</label>
+                            <input type="text" name="updatePersentase" class="form-control"
+                                value="<?= $par['persentase'] ?>">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
 
+<!-- Rest of your code -->
 <div class="row mt-5">
+    <!-- Kategori -->
     <div class="col-8">
-        <!-- Kategori -->
         <div class="card card-row card-primary">
             <div class="card-header">
                 <h3 class="card-title">Kategori</h3>
@@ -69,58 +93,16 @@ $nama = $this->session->userdata('nama');
                                 </div>
                                 <div class="col-md-6 d-flex">
                                     <h5 class="card-title ml-auto  ">
-                                        <?= $par['persentase'] ?> %
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                            data-target="#updateModal<?= $par['id_parent'] ?>"><?= $par['persentase'] ?> %
+                                        </button>
                                     </h5>
                                 </div>
                             </div>
-                            <!-- Add your card tools or actions here if needed -->
-                            <!-- <div class="card-tools">
-                <a href="<?= base_url('index.php/kategori/delete/') . $par['id_parent'] ?>" class="btn btn-tool btn-link"><i class="fas fa-trash"></i></a>
-                <a href="<?= base_url('index.php/kategori/update/') . $par['id_parent'] ?>" class="btn btn-tool"><i class="fas fa-pen"></i></a>
-            </div> -->
                         </div>
                     </div>
                 <?php endforeach ?>
-
             </div>
         </div>
     </div>
-
-    <!-- <div class="col-4"> -->
-    <!-- Kategori Pengeluaran -->
-    <!-- <div class="card card-row card-secondary">
-            <div class="card-header">
-                <h3 class="card-title">Kategori Pengeluaran</h3>
-            </div>
-            <div class="card-body" style="max-height: 280px; overflow-y: auto;">
-                <?php foreach ($keluar as $out): ?>
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h5 class="card-title">
-                                <?= $out['namaKategori'] ?>
-                            </h5>
-                        </div>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div> -->
-
-    <!-- Kategori Pemasukkan -->
-    <!-- <div class="card card-row card-secondary">
-            <div class="card-header">
-                <h3 class="card-title">Kategori Pemasukkan</h3>
-            </div>
-            <div class="card-body" style="max-height: 260px; overflow-y: auto;">
-                <?php foreach ($masuk as $in): ?>
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h5 class="card-title">
-                                <?= $in['namaKategori'] ?>
-                            </h5>
-                        </div>
-                    </div>
-                <?php endforeach ?>
-            </div>
-        </div> -->
-</div>
 </div>
