@@ -37,7 +37,7 @@
         </div>
 
         <?php foreach ($transaksi as $tanggal => $data): ?>
-    <div class="card">
+    <div class="card print-section">
         <div class="card-header">
             <h3 class="card-title"><?= date('d-m-Y', strtotime($tanggal)) ?></h3>
             <div class="card-tools"></div>
@@ -65,7 +65,29 @@
         </div>
     </div>
 <?php endforeach; ?>
+<style>
+    @media print {
+        .print-section {
+            display: block !important;
+        }
 
+        body * {
+            visibility: hidden;
+        }
+
+        .print-section, .print-section * {
+            visibility: visible;
+        }
+    }
+</style>
+
+<button onclick="printSection()" class="btn btn-primary mb-2">Print</button>
+      
+<script>
+    function printSection() {
+        window.print();
+    }
+</script>
 
 
 
