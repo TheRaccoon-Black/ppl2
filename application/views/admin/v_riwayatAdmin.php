@@ -6,7 +6,7 @@
           <!-- <th>NO</th> -->
           <th>Id</th>
           <th>Nama</th>
-          <th>Username</th>
+          <th>Tanggal</th>
           <!-- <th>foto</th> -->
           <th>Jumlah</th>
           <th>Jenis</th>
